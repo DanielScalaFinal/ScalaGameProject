@@ -1,0 +1,30 @@
+[0m[[0minfo[0m] [0mControllerSpec[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mA controller should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m be able to attach a view[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m be able to detach a view[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can close views with autoClose automatically[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can select tiles[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can start new games[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can request hints[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can request moveables[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can detach views[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can scramble[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can add scores[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m provides access to game scores[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m provides access to game tiles[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m provides access to game setups[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m provides access to game tile types[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m provides access to game field width and height[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can check if tiles are moveable[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can calculate a tile index[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can find a setup by id[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can find a tile by coords[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can find the topmost tile[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can provide a hint[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can provide sorted tiles[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can detect if there are no further moves[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification ControllerSpec[0m
+[0m[[0minfo[0m] [0m[34mFinished in 0 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m[0m[34m23 examples, 0 failure, 0 error[0m[0m

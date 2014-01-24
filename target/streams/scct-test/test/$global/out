@@ -1,0 +1,22 @@
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggamemodel.SetupTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggamemodel.TileTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggamemodel.TileTypeTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggameutil.PublischerTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggamemodel.ScoreTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggamecontroller.ControllerSpec, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggameutil.FileUtilTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mRunning TaskDef(test.scala.mahjonggamemodel.ImplementationTest, specs2 Specification fingerprint, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mSummary for ScalaCheck not available.[0m
+[0m[[0mdebug[0m] [0mSummary for specs2 not available.[0m
+[0m[[0mdebug[0m] [0mSummary for specs not available.[0m
+[0m[[0mdebug[0m] [0mSummary for ScalaTest not available.[0m
+[0m[[0minfo[0m] [0mPassed: Total 79, Failed 0, Errors 0, Passed 79[0m
+[0m[[0mdebug[0m] [0mPassed tests:[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggamemodel.TileTest[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggameutil.FileUtilTest[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggamemodel.ScoreTest[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggamecontroller.ControllerSpec[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggameutil.PublischerTest[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggamemodel.SetupTest[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggamemodel.TileTypeTest[0m
+[0m[[0mdebug[0m] [0m	test.scala.mahjonggamemodel.ImplementationTest[0m

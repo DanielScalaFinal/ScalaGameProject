@@ -1,0 +1,24 @@
+[0m[[0minfo[0m] [0mTileTest[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mA Point should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have an x value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have a y value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have a z value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m  A Tile should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m have an x value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m have a y value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m have a z value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m be able to change the tileType[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m be a string[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m have test points[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m have a point outside[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m have a point inside[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m    A TilePair should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m    [32m+[0m have a tile1 value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m    [32m+[0m have a tile2 value[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification TileTest[0m
+[0m[[0minfo[0m] [0m[34mFinished in 344 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m[0m[34m13 examples, 0 failure, 0 error[0m[0m

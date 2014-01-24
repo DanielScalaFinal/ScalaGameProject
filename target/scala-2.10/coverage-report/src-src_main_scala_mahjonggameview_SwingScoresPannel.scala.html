@@ -1,0 +1,437 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameview/<span class="header">&#x200B;SwingScoresPannel.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingScoresPannel.scala.html#Class_main_scala_mahjonggameview_AddScoreEvent"><img src="class.png"/>AddScoreEvent</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingScoresPannel.scala.html#Class_main_scala_mahjonggameview_SwingScoresPanel"><img src="class.png"/>SwingScoresPanel</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggameview
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggamemodel._
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import swing._
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import swing.event._
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import main.scala.mahjonggamemodel.Setup
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>import main.scala.mahjonggamemodel.Scores
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">9</td>
+            <td><a id="Class_main_scala_mahjonggameview_AddScoreEvent"/>case class AddScoreEvent<span class="non">(val setup:Setup, val name:String, val ms:Int) extends Event
+</span></td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">11</td>
+            <td><a id="Class_main_scala_mahjonggameview_SwingScoresPanel"/>class SwingScoresPanel<span class="non">(scores:Scores) extends GridPanel(1, 1) {
+</span></td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">13</td>
+            <td>  var currentSetup:Setup = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">14</td>
+            <td>  var currentTime = <span class="non">0
+</span></td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">16</td>
+            <td>  <span class="non">reactions += {
+</span></td>
+          </tr><tr>
+            <td class="black">17</td>
+            <td>    case e:EditDone =&gt; {
+</td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>      publish(new AddScoreEvent(currentSetup, e.source.text, currentTime))
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td>      deafTo(e.source)
+</td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>  def prepareGrid(setupName:String) {
+</td>
+          </tr><tr>
+            <td class="red">24</td>
+            <td>    <span class="non">contents.clear
+</span></td>
+          </tr><tr>
+            <td class="red">25</td>
+            <td>    <span class="non">addCaptionsToGrid(setupName)
+</span></td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>  def addCaptionsToGrid(setupName:String) {
+</td>
+          </tr><tr>
+            <td class="red">29</td>
+            <td>    <span class="non">contents += new Label(&quot;------&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">30</td>
+            <td>    <span class="non">contents += new Label(setupName)
+</span></td>
+          </tr><tr>
+            <td class="red">31</td>
+            <td>    <span class="non">contents += new Label(&quot;------&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">32</td>
+            <td>    <span class="non">contents += new Label(&quot;Position&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">33</td>
+            <td>    <span class="non">contents += new Label(&quot;Name&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">34</td>
+            <td>    <span class="non">contents += new Label(&quot;Seconds&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">36</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">37</td>
+            <td>  def addScore(setup:Setup, ms:Int) {
+</td>
+          </tr><tr>
+            <td class="red">38</td>
+            <td>    if (<span class="non">!scores.isInScoreboard(setup, ms)) {
+</span></td>
+          </tr><tr>
+            <td class="red">39</td>
+            <td>      <span class="non">showScores(setup)
+</span></td>
+          </tr><tr>
+            <td class="black">40</td>
+            <td>    } else {
+</td>
+          </tr><tr>
+            <td class="red">41</td>
+            <td>      <span class="non">visible = false
+</span></td>
+          </tr><tr>
+            <td class="red">42</td>
+            <td>      <span class="non">prepareGrid(setup.name)
+</span></td>
+          </tr><tr>
+            <td class="red">43</td>
+            <td>      val pos = <span class="non">scores.getScorePosition(setup, ms)
+</span></td>
+          </tr><tr>
+            <td class="red">44</td>
+            <td>      val textField = <span class="non">new TextField(&quot;Anonymous&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">45</td>
+            <td>      <span class="non">currentSetup = setup
+</span></td>
+          </tr><tr>
+            <td class="red">46</td>
+            <td>      <span class="non">currentTime = ms
+</span></td>
+          </tr><tr>
+            <td class="red">47</td>
+            <td>      <span class="non">listenTo(textField)
+</span></td>
+          </tr><tr>
+            <td class="red">48</td>
+            <td>      val scoreList = <span class="non">scores.getScores(setup)
+</span></td>
+          </tr><tr>
+            <td class="red">49</td>
+            <td>      <span class="non">rows = Scores.PerSetupEntries + 2
+</span></td>
+          </tr><tr>
+            <td class="red">50</td>
+            <td>      <span class="non">columns = 3
+</span></td>
+          </tr><tr>
+            <td class="red">51</td>
+            <td>      for (<span class="non">i &lt;- 0 until Scores.PerSetupEntries) {
+</span></td>
+          </tr><tr>
+            <td class="red">52</td>
+            <td>        <span class="non">contents += new Label((i+1).toString)
+</span></td>
+          </tr><tr>
+            <td class="red">53</td>
+            <td>        if (<span class="non">i &lt; pos) {
+</span></td>
+          </tr><tr>
+            <td class="red">54</td>
+            <td>          <span class="non">contents += new Label(scoreList(i).name)
+</span></td>
+          </tr><tr>
+            <td class="red">55</td>
+            <td>          <span class="non">contents += new Label((scoreList(i).ms / 1000.0).toString)
+</span></td>
+          </tr><tr>
+            <td class="red">56</td>
+            <td>        } else if (<span class="non">i == pos) {
+</span></td>
+          </tr><tr>
+            <td class="red">57</td>
+            <td>          <span class="non">contents += textField
+</span></td>
+          </tr><tr>
+            <td class="red">58</td>
+            <td>          <span class="non">contents += new Label((ms / 1000.0).toString)
+</span></td>
+          </tr><tr>
+            <td class="red">59</td>
+            <td>        } else if (<span class="non">scoreList.size &gt;= i) {
+</span></td>
+          </tr><tr>
+            <td class="red">60</td>
+            <td>          <span class="non">contents += new Label(scoreList(i-1).name)
+</span></td>
+          </tr><tr>
+            <td class="red">61</td>
+            <td>          <span class="non">contents += new Label((scoreList(i-1).ms / 1000.0).toString)
+</span></td>
+          </tr><tr>
+            <td class="black">62</td>
+            <td>        } else {
+</td>
+          </tr><tr>
+            <td class="red">63</td>
+            <td>          <span class="non">contents += new Label()
+</span></td>
+          </tr><tr>
+            <td class="red">64</td>
+            <td>          <span class="non">contents += new Label()
+</span></td>
+          </tr><tr>
+            <td class="black">65</td>
+            <td>        }
+</td>
+          </tr><tr>
+            <td class="black">66</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="red">67</td>
+            <td>      <span class="non">visible = true
+</span></td>
+          </tr><tr>
+            <td class="black">68</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">69</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">70</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">71</td>
+            <td>  def showScores(setup:Setup, position:Int = -1, message:String = &quot;&quot;) {
+</td>
+          </tr><tr>
+            <td class="red">72</td>
+            <td>    <span class="non">visible = false
+</span></td>
+          </tr><tr>
+            <td class="red">73</td>
+            <td>    val scoreList = <span class="non">scores.getScores(setup)
+</span></td>
+          </tr><tr>
+            <td class="red">74</td>
+            <td>    <span class="non">rows = Scores.PerSetupEntries + 3
+</span></td>
+          </tr><tr>
+            <td class="red">75</td>
+            <td>    <span class="non">columns = 3
+</span></td>
+          </tr><tr>
+            <td class="red">76</td>
+            <td>    <span class="non">prepareGrid(setup.name)
+</span></td>
+          </tr><tr>
+            <td class="red">77</td>
+            <td>    val highlightColor = <span class="non">new Color(255, 0, 0) 
+</span></td>
+          </tr><tr>
+            <td class="red">78</td>
+            <td>    for (<span class="non">i &lt;- 0 until Scores.PerSetupEntries) {
+</span></td>
+          </tr><tr>
+            <td class="red">79</td>
+            <td>      val posLabel = <span class="non">new Label((i+1).toString)
+</span></td>
+          </tr><tr>
+            <td class="red">80</td>
+            <td>      <span class="non">contents += posLabel
+</span></td>
+          </tr><tr>
+            <td class="red">81</td>
+            <td>      if (<span class="non">i&lt;scoreList.length) {
+</span></td>
+          </tr><tr>
+            <td class="red">82</td>
+            <td>        val nameLabel = <span class="non">new Label(scoreList(i).name)
+</span></td>
+          </tr><tr>
+            <td class="red">83</td>
+            <td>        val timeLabel = <span class="non">new Label((scoreList(i).ms / 1000.0).toString)
+</span></td>
+          </tr><tr>
+            <td class="red">84</td>
+            <td>        if (<span class="non">i == position) {
+</span></td>
+          </tr><tr>
+            <td class="red">85</td>
+            <td>          <span class="non">nameLabel.peer.setForeground(highlightColor);
+</span></td>
+          </tr><tr>
+            <td class="red">86</td>
+            <td>          <span class="non">timeLabel.peer.setForeground(highlightColor);
+</span></td>
+          </tr><tr>
+            <td class="red">87</td>
+            <td>          <span class="non">posLabel.peer.setForeground(highlightColor);
+</span></td>
+          </tr><tr>
+            <td class="black">88</td>
+            <td>        }
+</td>
+          </tr><tr>
+            <td class="red">89</td>
+            <td>        <span class="non">contents += nameLabel
+</span></td>
+          </tr><tr>
+            <td class="red">90</td>
+            <td>        <span class="non">contents += timeLabel
+</span></td>
+          </tr><tr>
+            <td class="black">91</td>
+            <td>      } else {
+</td>
+          </tr><tr>
+            <td class="red">92</td>
+            <td>        <span class="non">contents += new Label()
+</span></td>
+          </tr><tr>
+            <td class="red">93</td>
+            <td>        <span class="non">contents += new Label()
+</span></td>
+          </tr><tr>
+            <td class="black">94</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">95</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">96</td>
+            <td>    val messageLabel = <span class="non">new Label(message)
+</span></td>
+          </tr><tr>
+            <td class="red">97</td>
+            <td>    <span class="non">messageLabel.peer.setForeground(highlightColor)
+</span></td>
+          </tr><tr>
+            <td class="red">98</td>
+            <td>    <span class="non">contents += new Label()
+</span></td>
+          </tr><tr>
+            <td class="red">99</td>
+            <td>    <span class="non">contents += messageLabel
+</span></td>
+          </tr><tr>
+            <td class="red">100</td>
+            <td>    <span class="non">contents += new Label()
+</span></td>
+          </tr><tr>
+            <td class="red">101</td>
+            <td>    <span class="non">visible = true
+</span></td>
+          </tr><tr>
+            <td class="black">102</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">103</td>
+            <td>}
+</td>
+          </tr></tbody></table>

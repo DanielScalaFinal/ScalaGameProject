@@ -1,0 +1,213 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamemodel/<span class="header">&#x200B;Game.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Game.scala.html#Object_main_scala_mahjonggamemodel_Game"><img src="object.png"/>Game</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Game.scala.html#Trait_main_scala_mahjonggamemodel_Game"><img src="trait.png"/>Game</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamemodel
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td><a id="Object_main_scala_mahjonggamemodel_Game"/>object Game {
+</td>
+          </tr><tr>
+            <td class="green">7</td>
+            <td>  val HintPenalty = 15000
+</td>
+          </tr><tr>
+            <td class="green">8</td>
+            <td>  val HintTimeout = 3000
+</td>
+          </tr><tr>
+            <td class="green">9</td>
+            <td>  val MoveablesPenalty = 5000
+</td>
+          </tr><tr>
+            <td class="green">10</td>
+            <td>  val MoveablesTimeout = 5000
+</td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td><a id="Trait_main_scala_mahjonggamemodel_Game"/>trait Game {
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>  // Field 
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>  def width:Int
+</td>
+          </tr><tr>
+            <td class="black">16</td>
+            <td>  def width_=(newWidth:Int)
+</td>
+          </tr><tr>
+            <td class="black">17</td>
+            <td>  def height:Int
+</td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>  def height_=(newHeight:Int)
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>  // Tiles
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>  def tileTypes:IndexedSeq[TileType]
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>  def tiles:Map[Int, Tile]
+</td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>  def tiles_=(newTiles:Map[Int, Tile])
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>  def +=(tile:Tile)
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>  def -=(tile:Tile)
+</td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>  def canMove(tile:Tile) : Boolean
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>  def topmostTile(x:Int, y:Int) : Tile
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>  def findTile(x:Double, y:Double, z:Double) : Tile;
+</td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>  def calcTileIndex(tile:Tile) : Int
+</td>
+          </tr><tr>
+            <td class="black">30</td>
+            <td>  def sortedTiles:List[Tile]
+</td>
+          </tr><tr>
+            <td class="black">31</td>
+            <td>  def hint:TilePair
+</td>
+          </tr><tr>
+            <td class="black">32</td>
+            <td>  def gameTime:Int
+</td>
+          </tr><tr>
+            <td class="black">33</td>
+            <td>  def nextMovePossible:Boolean
+</td>
+          </tr><tr>
+            <td class="black">34</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>  // Scores &amp; Setups
+</td>
+          </tr><tr>
+            <td class="black">36</td>
+            <td>  def scores:Scores
+</td>
+          </tr><tr>
+            <td class="black">37</td>
+            <td>  def setups:List[Setup]
+</td>
+          </tr><tr>
+            <td class="black">38</td>
+            <td>  def setupById(id:String) : Setup
+</td>
+          </tr><tr>
+            <td class="black">39</td>
+            <td>  def setup : Setup
+</td>
+          </tr><tr>
+            <td class="black">40</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">41</td>
+            <td>  // Game actions
+</td>
+          </tr><tr>
+            <td class="black">42</td>
+            <td>  def play(tile1:Tile, tile2:Tile) : Boolean
+</td>
+          </tr><tr>
+            <td class="black">43</td>
+            <td>  def startNewGame(setup:Setup)
+</td>
+          </tr><tr>
+            <td class="black">44</td>
+            <td>  def scramble
+</td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>  def addHintPenalty
+</td>
+          </tr><tr>
+            <td class="black">46</td>
+            <td>  def addMoveablesPenalty
+</td>
+          </tr><tr>
+            <td class="black">47</td>
+            <td>}
+</td>
+          </tr></tbody></table>

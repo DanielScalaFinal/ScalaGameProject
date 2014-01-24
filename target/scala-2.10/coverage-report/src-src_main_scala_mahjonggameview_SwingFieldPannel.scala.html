@@ -1,0 +1,509 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameview/<span class="header">&#x200B;SwingFieldPannel.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingFieldPannel.scala.html#Class_main_scala_mahjonggameview_SwingFieldPanel"><img src="class.png"/>SwingFieldPanel</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingFieldPannel.scala.html#Object_main_scala_mahjonggameview_SwingFieldPanel"><img src="object.png"/>SwingFieldPanel</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingFieldPannel.scala.html#Class_main_scala_mahjonggameview_TileClickedEvent"><img src="class.png"/>TileClickedEvent</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggameview
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggamemodel._
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import main.scala.mahjonggameutil._
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import main.scala.mahjonggamecontroller._
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import swing._
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>import swing.event._
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>import javax.imageio.ImageIO
+</td>
+          </tr><tr>
+            <td class="black">9</td>
+            <td>import java.io.File
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>import java.awt.event._
+</td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>import main.scala.mahjonggameutil.SimpleSubscriber
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td><a id="Class_main_scala_mahjonggameview_TileClickedEvent"/>import main.scala.mahjonggamemodel.TilePair
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>import main.scala.mahjonggamemodel.Tile
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td><a id="Object_main_scala_mahjonggameview_SwingFieldPanel"/>object SwingFieldPanel {
+</td>
+          </tr><tr>
+            <td class="red">16</td>
+            <td>  val CellWidth = <span class="non">30
+</span></td>
+          </tr><tr>
+            <td class="red">17</td>
+            <td>  val CellHeight = <span class="non">20
+</span></td>
+          </tr><tr>
+            <td class="red">18</td>
+            <td>  val TileImageWidth = <span class="non">75
+</span></td>
+          </tr><tr>
+            <td class="red">19</td>
+            <td>  val TileImageHeight= <span class="non">95
+</span></td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">22</td>
+            <td>case class TileClickedEvent<span class="non">(val tile:Tile) extends Event
+</span></td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">24</td>
+            <td><a id="Class_main_scala_mahjonggameview_SwingFieldPanel"/>class SwingFieldPanel<span class="non">(val controller:MahjongController) extends Panel with SimpleSubscriber {
+</span></td>
+          </tr><tr>
+            <td class="red">25</td>
+            <td>  private var images = <span class="non">Map[String, Image]()
+</span></td>
+          </tr><tr>
+            <td class="red">26</td>
+            <td>  private var showHint = <span class="non">false
+</span></td>
+          </tr><tr>
+            <td class="red">27</td>
+            <td>  private var showMoveables = <span class="non">false
+</span></td>
+          </tr><tr>
+            <td class="red">28</td>
+            <td>  private var hint:TilePair = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">29</td>
+            <td>  private var selectedTile:Tile = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">30</td>
+            <td>  private var noMoves = <span class="non">false
+</span></td>
+          </tr><tr>
+            <td class="red">31</td>
+            <td>  <span class="non">updateSize
+</span></td>
+          </tr><tr>
+            <td class="red">32</td>
+            <td>  <span class="non">loadImages
+</span></td>
+          </tr><tr>
+            <td class="black">33</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">34</td>
+            <td>  <span class="non">listenTo(mouse.clicks)
+</span></td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">36</td>
+            <td>  <span class="non">reactions += {
+</span></td>
+          </tr><tr>
+            <td class="black">37</td>
+            <td>    case e: MouseReleased =&gt; mouseReleasedHandler(e)
+</td>
+          </tr><tr>
+            <td class="black">38</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">39</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">40</td>
+            <td>  def updateSize {
+</td>
+          </tr><tr>
+            <td class="red">41</td>
+            <td>    <span class="non">preferredSize = new Dimension(
+</span></td>
+          </tr><tr>
+            <td class="black">42</td>
+            <td>      controller.fieldWidth * SwingFieldPanel.CellWidth, 
+</td>
+          </tr><tr>
+            <td class="black">43</td>
+            <td>      controller.fieldHeight * SwingFieldPanel.CellHeight)
+</td>
+          </tr><tr>
+            <td class="black">44</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">46</td>
+            <td>  <span class="non">notificationProcessor = {
+</span></td>
+          </tr><tr>
+            <td class="black">47</td>
+            <td>    case TilesRemovedNotification(tiles) =&gt; repaint
+</td>
+          </tr><tr>
+            <td class="black">48</td>
+            <td>    case TileSelectedNotification(tile) =&gt; selectedTile = tile; repaint
+</td>
+          </tr><tr>
+            <td class="black">49</td>
+            <td>    case CreatedGameNotification() =&gt; noMoves = false; repaint
+</td>
+          </tr><tr>
+            <td class="black">50</td>
+            <td>    case ScrambledNotification() =&gt; noMoves = false; repaint
+</td>
+          </tr><tr>
+            <td class="black">51</td>
+            <td>    case StartHintNotification(hintPair) =&gt; showHint = true; hint = hintPair; repaint
+</td>
+          </tr><tr>
+            <td class="black">52</td>
+            <td>    case StopHintNotification() =&gt; showHint = false; repaint
+</td>
+          </tr><tr>
+            <td class="black">53</td>
+            <td>    case StartMoveablesNotification() =&gt; showMoveables = true; repaint
+</td>
+          </tr><tr>
+            <td class="black">54</td>
+            <td>    case StopMoveablesNotification() =&gt; showMoveables = false; repaint
+</td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>    case NoFurtherMovesNotification() =&gt; noMoves = true; repaint
+</td>
+          </tr><tr>
+            <td class="black">56</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">58</td>
+            <td>  def loadImages {
+</td>
+          </tr><tr>
+            <td class="red">59</td>
+            <td>    val specials = <span class="non">Array(&quot;disabled&quot;, &quot;selected&quot;, &quot;empty&quot;, &quot;tile&quot;, &quot;hint&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">60</td>
+            <td>    for (<span class="non">name &lt;- specials)
+</span></td>
+          </tr><tr>
+            <td class="red">61</td>
+            <td>      <span class="non">images += name -&gt; ImageIO.read(new File(&quot;tiles/&quot; + name + &quot;.png&quot;))
+</span></td>
+          </tr><tr>
+            <td class="black">62</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">64</td>
+            <td>  def loadTileImage(name:String) {
+</td>
+          </tr><tr>
+            <td class="red">65</td>
+            <td>    <span class="non">images += name -&gt; ImageIO.read(new File(&quot;tiles/&quot; + name + &quot;.png&quot;))
+</span></td>
+          </tr><tr>
+            <td class="black">66</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">67</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">68</td>
+            <td>  def findTile(p:swing.Point) : Tile = {
+</td>
+          </tr><tr>
+            <td class="red">69</td>
+            <td>    val tiles = <span class="non">controller.sortedTiles.reverse
+</span></td>
+          </tr><tr>
+            <td class="red">70</td>
+            <td>    for (<span class="non">tile &lt;- tiles) {
+</span></td>
+          </tr><tr>
+            <td class="red">71</td>
+            <td>      val x = <span class="non">tile.x * SwingFieldPanel.CellWidth - 5
+</span></td>
+          </tr><tr>
+            <td class="red">72</td>
+            <td>      val y = <span class="non">tile.y * SwingFieldPanel.CellHeight - 5 - 5 * tile.z
+</span></td>
+          </tr><tr>
+            <td class="red">73</td>
+            <td>      val rect = <span class="non">new Rectangle(x, y, SwingFieldPanel.TileImageWidth, SwingFieldPanel.TileImageHeight)
+</span></td>
+          </tr><tr>
+            <td class="red">74</td>
+            <td>      if (<span class="non">rect.contains(p)) {
+</span></td>
+          </tr><tr>
+            <td class="red">75</td>
+            <td>        <span class="non">return tile
+</span></td>
+          </tr><tr>
+            <td class="black">76</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">77</td>
+            <td>    }  
+</td>
+          </tr><tr>
+            <td class="red">78</td>
+            <td>    <span class="non">return null
+</span></td>
+          </tr><tr>
+            <td class="black">79</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">80</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">81</td>
+            <td>  def mouseReleasedHandler(e:event.MouseReleased) {
+</td>
+          </tr><tr>
+            <td class="red">82</td>
+            <td>    if (<span class="non">e.peer.getButton == MouseEvent.BUTTON1) {
+</span></td>
+          </tr><tr>
+            <td class="red">83</td>
+            <td>      val tile = <span class="non">findTile(e.point)
+</span></td>
+          </tr><tr>
+            <td class="red">84</td>
+            <td>      if (<span class="non">tile != null)
+</span></td>
+          </tr><tr>
+            <td class="red">85</td>
+            <td>        <span class="non">publish(new TileClickedEvent(tile))
+</span></td>
+          </tr><tr>
+            <td class="black">86</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">87</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">88</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">89</td>
+            <td>  override def paintComponent(g: Graphics2D) : Unit = {
+</td>
+          </tr><tr>
+            <td class="red">90</td>
+            <td>    <span class="non">g.setColor(new Color(255, 255, 255))
+</span></td>
+          </tr><tr>
+            <td class="red">91</td>
+            <td>    <span class="non">g.fillRect(0, 0, size.width, size.height)
+</span></td>
+          </tr><tr>
+            <td class="red">92</td>
+            <td>    if (<span class="non">noMoves) {
+</span></td>
+          </tr><tr>
+            <td class="red">93</td>
+            <td>      <span class="non">g.setColor(new Color(255, 0, 0))
+</span></td>
+          </tr><tr>
+            <td class="red">94</td>
+            <td>      <span class="non">g.drawString(&quot;No further moves. You should scramble!&quot;, 10, 20)
+</span></td>
+          </tr><tr>
+            <td class="black">95</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">96</td>
+            <td>    val tiles = <span class="non">controller.sortedTiles
+</span></td>
+          </tr><tr>
+            <td class="red">97</td>
+            <td>    for (<span class="non">tile &lt;- tiles) {
+</span></td>
+          </tr><tr>
+            <td class="red">98</td>
+            <td>      <span class="non">drawTile(g, tile)
+</span></td>
+          </tr><tr>
+            <td class="black">99</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">100</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">101</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">102</td>
+            <td>  def drawTile(g:Graphics2D, tile:Tile) {
+</td>
+          </tr><tr>
+            <td class="red">103</td>
+            <td>    if (<span class="non">!images.contains(tile.tileType.name))
+</span></td>
+          </tr><tr>
+            <td class="red">104</td>
+            <td>      <span class="non">loadTileImage(tile.tileType.name)
+</span></td>
+          </tr><tr>
+            <td class="red">105</td>
+            <td>    val x = <span class="non">tile.x * SwingFieldPanel.CellWidth - 5
+</span></td>
+          </tr><tr>
+            <td class="red">106</td>
+            <td>    val y = <span class="non">tile.y * SwingFieldPanel.CellHeight - 5 - 5 * tile.z
+</span></td>
+          </tr><tr>
+            <td class="red">107</td>
+            <td>    <span class="non">g.drawImage(images(&quot;tile&quot;), x, y, null)
+</span></td>
+          </tr><tr>
+            <td class="red">108</td>
+            <td>    <span class="non">g.drawImage(images(tile.tileType.name), x, y, null)
+</span></td>
+          </tr><tr>
+            <td class="red">109</td>
+            <td>    if (<span class="non">showMoveables &amp;&amp; !controller.canMove(tile)) {
+</span></td>
+          </tr><tr>
+            <td class="red">110</td>
+            <td>      <span class="non">g.drawImage(images(&quot;disabled&quot;), x, y, null)
+</span></td>
+          </tr><tr>
+            <td class="black">111</td>
+            <td>    } 
+</td>
+          </tr><tr>
+            <td class="red">112</td>
+            <td>    if (<span class="non">showHint &amp;&amp; (tile == hint.tile1 || tile == hint.tile2)) {
+</span></td>
+          </tr><tr>
+            <td class="red">113</td>
+            <td>      <span class="non">g.drawImage(images(&quot;hint&quot;), x, y, null)
+</span></td>
+          </tr><tr>
+            <td class="black">114</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">115</td>
+            <td>    if (<span class="non">tile == selectedTile) {
+</span></td>
+          </tr><tr>
+            <td class="red">116</td>
+            <td>      <span class="non">g.drawImage(images(&quot;selected&quot;), x, y, null)
+</span></td>
+          </tr><tr>
+            <td class="black">117</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">118</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">119</td>
+            <td>}
+</td>
+          </tr></tbody></table>

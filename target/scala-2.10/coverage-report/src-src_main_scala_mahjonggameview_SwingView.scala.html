@@ -1,0 +1,477 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameview/<span class="header">&#x200B;SwingView.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingView.scala.html#Class_main_scala_mahjonggameview_ShowScoresEvent"><img src="class.png"/>ShowScoresEvent</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingView.scala.html#Class_main_scala_mahjonggameview_StartGameEvent"><img src="class.png"/>StartGameEvent</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingView.scala.html#Class_main_scala_mahjonggameview_SwingView"><img src="class.png"/>SwingView</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggameview
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import main.scala.mahjonggamemodel._
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import main.scala.mahjonggameutil._
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import main.scala.mahjonggamecontroller._
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>import scala.swing._
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>import scala.swing.event._
+</td>
+          </tr><tr>
+            <td class="black">9</td>
+            <td>import javax.swing.JFrame._
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">11</td>
+            <td><a id="Class_main_scala_mahjonggameview_ShowScoresEvent"/>case class ShowScoresEvent<span class="non">() extends Event
+</span></td>
+          </tr><tr>
+            <td class="red">12</td>
+            <td><a id="Class_main_scala_mahjonggameview_StartGameEvent"/>case class StartGameEvent<span class="non">() extends Event
+</span></td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">14</td>
+            <td><a id="Class_main_scala_mahjonggameview_SwingView"/>class SwingView<span class="non">(name:String = &quot;Scajong&quot;) extends Frame with View { 
+</span></td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">16</td>
+            <td>  private var controller:MahjongController = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">17</td>
+            <td>  var fieldPanel:SwingFieldPanel = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">18</td>
+            <td>  var scorePanel:SwingScoresPanel = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">19</td>
+            <td>  var setupSelectPanel:SwingSetupsPanel = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">20</td>
+            <td>  var scoreSelectPanel:SwingSetupsPanel = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">22</td>
+            <td>  <span class="non">title = name
+</span></td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">24</td>
+            <td>  <span class="non">reactions += {
+</span></td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>    case TileClickedEvent(tile) =&gt; controller.selectTile(tile)
+</td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>    case SetupSelectedEvent(setup) =&gt; controller.startNewGame(setup)
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>    case ScoreSelectedEvent(setup) =&gt; scorePanel.showScores(setup); selectPanel(scorePanel)
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>    case AddScoreEvent(setup, name, ms) =&gt; controller.addScore(setup, name, ms)
+</td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>    case StartGameEvent() =&gt; selectPanel(setupSelectPanel)
+</td>
+          </tr><tr>
+            <td class="black">30</td>
+            <td>    case ShowScoresEvent() =&gt; selectPanel(scoreSelectPanel)
+</td>
+          </tr><tr>
+            <td class="black">31</td>
+            <td>    case WindowClosing(_) =&gt; closeView
+</td>
+          </tr><tr>
+            <td class="black">32</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">33</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">34</td>
+            <td>  override def startView(controller:MahjongController) {
+</td>
+          </tr><tr>
+            <td class="red">35</td>
+            <td>    <span class="non">this.controller = controller
+</span></td>
+          </tr><tr>
+            <td class="red">36</td>
+            <td>    <span class="non">fieldPanel = new SwingFieldPanel(controller)
+</span></td>
+          </tr><tr>
+            <td class="red">37</td>
+            <td>    <span class="non">scorePanel = new SwingScoresPanel(controller.scores)
+</span></td>
+          </tr><tr>
+            <td class="red">38</td>
+            <td>    <span class="non">setupSelectPanel = new SwingSetupsPanel(controller.setups, &quot;Start a new game&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">39</td>
+            <td>      def notification(setup:Setup) = new SetupSelectedEvent(setup)
+</td>
+          </tr><tr>
+            <td class="black">40</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">41</td>
+            <td>    <span class="non">scoreSelectPanel = new SwingSetupsPanel(controller.setups, &quot;Show scores&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">42</td>
+            <td>      def notification(setup:Setup) = new ScoreSelectedEvent(setup)
+</td>
+          </tr><tr>
+            <td class="black">43</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">44</td>
+            <td>    
+</td>
+          </tr><tr>
+            <td class="red">45</td>
+            <td>    <span class="non">listenTo(fieldPanel)
+</span></td>
+          </tr><tr>
+            <td class="red">46</td>
+            <td>    <span class="non">listenTo(scorePanel)
+</span></td>
+          </tr><tr>
+            <td class="red">47</td>
+            <td>    <span class="non">listenTo(setupSelectPanel)
+</span></td>
+          </tr><tr>
+            <td class="red">48</td>
+            <td>    <span class="non">listenTo(scoreSelectPanel)
+</span></td>
+          </tr><tr>
+            <td class="black">49</td>
+            <td>    
+</td>
+          </tr><tr>
+            <td class="red">50</td>
+            <td>    if (<span class="non">controller.tiles.size &gt; 0)
+</span></td>
+          </tr><tr>
+            <td class="red">51</td>
+            <td>      <span class="non">selectPanel(fieldPanel)
+</span></td>
+          </tr><tr>
+            <td class="black">52</td>
+            <td>    else
+</td>
+          </tr><tr>
+            <td class="red">53</td>
+            <td>      <span class="non">selectPanel(setupSelectPanel)
+</span></td>
+          </tr><tr>
+            <td class="black">54</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">56</td>
+            <td>  <span class="non">notificationProcessor = {
+</span></td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>    case WonNotification(setup, ms, inScoreBoard) =&gt; won(setup, ms, inScoreBoard)
+</td>
+          </tr><tr>
+            <td class="black">58</td>
+            <td>    case CreatedGameNotification() =&gt; fieldPanel.updateSize; selectPanel(fieldPanel); pack
+</td>
+          </tr><tr>
+            <td class="black">59</td>
+            <td>    case NewScoreBoardEntryNotification(setup, position) =&gt; scorePanel.showScores(setup, position); selectPanel(scorePanel)
+</td>
+          </tr><tr>
+            <td class="black">60</td>
+            <td>    // Forward all other notifications to the field panel
+</td>
+          </tr><tr>
+            <td class="black">61</td>
+            <td>    case sn:SimpleNotification =&gt; fieldPanel.notificationProcessor.apply(sn)
+</td>
+          </tr><tr>
+            <td class="black">62</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">64</td>
+            <td>  val swingView = <span class="non">this
+</span></td>
+          </tr><tr>
+            <td class="red">65</td>
+            <td>  <span class="non">menuBar = new MenuBar {
+</span></td>
+          </tr><tr>
+            <td class="red">66</td>
+            <td>    <span class="non">contents += new Menu(&quot;Game&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="red">67</td>
+            <td>      <span class="non">contents += new MenuItem(Action(&quot;Start new Game&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">68</td>
+            <td>        swingView.publish(new StartGameEvent)
+</td>
+          </tr><tr>
+            <td class="black">69</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="red">70</td>
+            <td>      <span class="non">contents += new MenuItem(Action(&quot;Show Scores&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">71</td>
+            <td>        swingView.publish(new ShowScoresEvent)
+</td>
+          </tr><tr>
+            <td class="black">72</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="red">73</td>
+            <td>      <span class="non">contents += new MenuItem(Action(&quot;Close&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">74</td>
+            <td>        closeView
+</td>
+          </tr><tr>
+            <td class="black">75</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="black">76</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">77</td>
+            <td>    <span class="non">contents += new Menu(&quot;Actions&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="red">78</td>
+            <td>      <span class="non">contents += new MenuItem(Action(&quot;Scramble&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">79</td>
+            <td>        controller.scramble
+</td>
+          </tr><tr>
+            <td class="black">80</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="red">81</td>
+            <td>      <span class="non">contents += new MenuItem(Action(&quot;Show Moveables (+&quot; + (Game.MoveablesPenalty / 1000.0) + &quot; sec)&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">82</td>
+            <td>        controller.requestMoveables
+</td>
+          </tr><tr>
+            <td class="black">83</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="red">84</td>
+            <td>      <span class="non">contents += new MenuItem(Action(&quot;Show Hint (+&quot; + (Game.HintPenalty / 1000.0) + &quot; sec)&quot;) {
+</span></td>
+          </tr><tr>
+            <td class="black">85</td>
+            <td>        controller.requestHint
+</td>
+          </tr><tr>
+            <td class="black">86</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="black">87</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">88</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">89</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">90</td>
+            <td>  def closeView {
+</td>
+          </tr><tr>
+            <td class="red">91</td>
+            <td>    <span class="non">controller.detachView(this)
+</span></td>
+          </tr><tr>
+            <td class="red">92</td>
+            <td>    <span class="non">dispose
+</span></td>
+          </tr><tr>
+            <td class="black">93</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">94</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">95</td>
+            <td>  def selectPanel(panel:Panel) {
+</td>
+          </tr><tr>
+            <td class="red">96</td>
+            <td>    <span class="non">visible = false
+</span></td>
+          </tr><tr>
+            <td class="red">97</td>
+            <td>    <span class="non">minimumSize = new Dimension(640, 480)
+</span></td>
+          </tr><tr>
+            <td class="red">98</td>
+            <td>    <span class="non">contents = panel
+</span></td>
+          </tr><tr>
+            <td class="red">99</td>
+            <td>    <span class="non">visible = true
+</span></td>
+          </tr><tr>
+            <td class="black">100</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">101</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">102</td>
+            <td>  def won(setup:Setup, ms:Int, inScoreBoard:Boolean) {
+</td>
+          </tr><tr>
+            <td class="red">103</td>
+            <td>    if (<span class="non">inScoreBoard) {
+</span></td>
+          </tr><tr>
+            <td class="red">104</td>
+            <td>      <span class="non">scorePanel.addScore(setup, ms)
+</span></td>
+          </tr><tr>
+            <td class="black">105</td>
+            <td>    } else {
+</td>
+          </tr><tr>
+            <td class="red">106</td>
+            <td>      val message = <span class="non">&quot;Your time: &quot; + (ms / 1000.0) + &quot; sec&quot;
+</span></td>
+          </tr><tr>
+            <td class="red">107</td>
+            <td>      <span class="non">scorePanel.showScores(setup, -1, message)
+</span></td>
+          </tr><tr>
+            <td class="black">108</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">109</td>
+            <td>    <span class="non">selectPanel(scorePanel)
+</span></td>
+          </tr><tr>
+            <td class="black">110</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">111</td>
+            <td>}
+</td>
+          </tr></tbody></table>

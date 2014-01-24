@@ -1,0 +1,317 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamemodel/<span class="header">&#x200B;Scores.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Scores.scala.html#Class_main_scala_mahjonggamemodel_ScoreEntry"><img src="class.png"/>ScoreEntry</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Scores.scala.html#Class_main_scala_mahjonggamemodel_Scores"><img src="class.png"/>Scores</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Scores.scala.html#Object_main_scala_mahjonggamemodel_Scores"><img src="object.png"/>Scores</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamemodel
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggameutil._
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import util.matching.Regex
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import java.io.FileNotFoundException
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import main.scala.mahjonggameutil.FileUtil
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">9</td>
+            <td><a id="Class_main_scala_mahjonggamemodel_ScoreEntry"/>class ScoreEntry(val setupId:String, val name:String, val ms:Int) {
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>  override def toString = {
+</td>
+          </tr><tr>
+            <td class="green">11</td>
+            <td>    &quot;[Setup:&quot; + setupId + &quot;,Name:&quot; + name + &quot;,ms:&quot; + ms + &quot;]&quot;
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td><a id="Object_main_scala_mahjonggamemodel_Scores"/>object Scores {
+</td>
+          </tr><tr>
+            <td class="green">16</td>
+            <td>  val PerSetupEntries = 10
+</td>
+          </tr><tr>
+            <td class="green">17</td>
+            <td>  val separator = &quot;####&quot;
+</td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">20</td>
+            <td><a id="Class_main_scala_mahjonggamemodel_Scores"/>class Scores(scoreFile:String) {
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">22</td>
+            <td>  var scores = List[ScoreEntry]()
+</td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="green">24</td>
+            <td>  loadScores
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="green">26</td>
+            <td>  def isInScoreboard(setup:Setup, ms:Int) = getScores(setup).filter(_.ms &lt; ms).size &lt; Scores.PerSetupEntries
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">28</td>
+            <td>  implicit val scoreOrdering = Ordering.by((s: ScoreEntry) =&gt; s.ms)
+</td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">30</td>
+            <td>  def getScores(setup:Setup) = {
+</td>
+          </tr><tr>
+            <td class="green">31</td>
+            <td>    val sorted = scores.filter(_.setupId == setup.id).sorted
+</td>
+          </tr><tr>
+            <td class="green">32</td>
+            <td>    sorted.take(Scores.PerSetupEntries)
+</td>
+          </tr><tr>
+            <td class="black">33</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">34</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>  def getScorePosition(setup:Setup, ms:Int) = {
+</td>
+          </tr><tr>
+            <td class="green">36</td>
+            <td>    if (!isInScoreboard(setup, ms))
+</td>
+          </tr><tr>
+            <td class="green">37</td>
+            <td>      -1
+</td>
+          </tr><tr>
+            <td class="black">38</td>
+            <td>    else
+</td>
+          </tr><tr>
+            <td class="green">39</td>
+            <td>      scores.count(e =&gt; e.setupId == setup.id &amp;&amp; e.ms &lt; ms)
+</td>
+          </tr><tr>
+            <td class="black">40</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">41</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">42</td>
+            <td>  def addScore(setup:Setup, name:String, ms:Int) : Int = {
+</td>
+          </tr><tr>
+            <td class="green">43</td>
+            <td>    if (isInScoreboard(setup, ms)) {
+</td>
+          </tr><tr>
+            <td class="green">44</td>
+            <td>      val position = getScorePosition(setup, ms)
+</td>
+          </tr><tr>
+            <td class="green">45</td>
+            <td>      scores = new ScoreEntry(setup.id, name, ms) :: scores
+</td>
+          </tr><tr>
+            <td class="green">46</td>
+            <td>      saveScores
+</td>
+          </tr><tr>
+            <td class="green">47</td>
+            <td>      position
+</td>
+          </tr><tr>
+            <td class="green">48</td>
+            <td>    } else -1
+</td>
+          </tr><tr>
+            <td class="black">49</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">50</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">51</td>
+            <td>  private def saveScores {
+</td>
+          </tr><tr>
+            <td class="green">52</td>
+            <td>    val lines = for (score &lt;- scores) yield {
+</td>
+          </tr><tr>
+            <td class="green">53</td>
+            <td>      score.setupId + Scores.separator + score.name + Scores.separator + score.ms + &quot;\n&quot;
+</td>
+          </tr><tr>
+            <td class="black">54</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="green">55</td>
+            <td>    FileUtil.writeText(scoreFile, lines.mkString)
+</td>
+          </tr><tr>
+            <td class="black">56</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">58</td>
+            <td>  private def loadScores {
+</td>
+          </tr><tr>
+            <td class="green">59</td>
+            <td>    scores = List[ScoreEntry]()
+</td>
+          </tr><tr>
+            <td class="black">60</td>
+            <td>    try {
+</td>
+          </tr><tr>
+            <td class="green">61</td>
+            <td>      val lines = FileUtil.readLines(scoreFile)
+</td>
+          </tr><tr>
+            <td class="green">62</td>
+            <td>      val regex = new Regex(&quot;^(.+)&quot; + Scores.separator + &quot;(.+)&quot; + Scores.separator + &quot;(\\d+)$&quot;, &quot;setupId&quot;, &quot;name&quot;, &quot;ms&quot;)
+</td>
+          </tr><tr>
+            <td class="green">63</td>
+            <td>      lines.foreach(_ match {
+</td>
+          </tr><tr>
+            <td class="green">64</td>
+            <td>        case regex(setupId, name, ms) =&gt; scores = new ScoreEntry(setupId, name, ms.toInt) :: scores; 
+</td>
+          </tr><tr>
+            <td class="black">65</td>
+            <td>        case _ =&gt; // Ignore
+</td>
+          </tr><tr>
+            <td class="black">66</td>
+            <td>      })
+</td>
+          </tr><tr>
+            <td class="black">67</td>
+            <td>    } catch {
+</td>
+          </tr><tr>
+            <td class="black">68</td>
+            <td>      case e: FileNotFoundException =&gt; // Nothing
+</td>
+          </tr><tr>
+            <td class="black">69</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">70</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">71</td>
+            <td>}
+</td>
+          </tr></tbody></table>

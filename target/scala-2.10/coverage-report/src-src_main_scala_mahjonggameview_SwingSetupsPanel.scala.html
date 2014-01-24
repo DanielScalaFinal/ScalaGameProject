@@ -1,0 +1,153 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameview/<span class="header">&#x200B;SwingSetupsPanel.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingSetupsPanel.scala.html#Class_main_scala_mahjonggameview_ScoreSelectedEvent"><img src="class.png"/>ScoreSelectedEvent</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingSetupsPanel.scala.html#Class_main_scala_mahjonggameview_SetupSelectedEvent"><img src="class.png"/>SetupSelectedEvent</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_SwingSetupsPanel.scala.html#Class_main_scala_mahjonggameview_SwingSetupsPanel"><img src="class.png"/>SwingSetupsPanel</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggameview
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggamemodel._
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import swing._
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import scala.swing.event.Event
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import javax.swing.ImageIcon
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>import main.scala.mahjonggamemodel.Setup
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">9</td>
+            <td><a id="Class_main_scala_mahjonggameview_SetupSelectedEvent"/>case class SetupSelectedEvent<span class="non">(val setup:Setup) extends Event
+</span></td>
+          </tr><tr>
+            <td class="red">10</td>
+            <td><a id="Class_main_scala_mahjonggameview_ScoreSelectedEvent"/>case class ScoreSelectedEvent<span class="non">(val setup:Setup) extends Event
+</span></td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">12</td>
+            <td><a id="Class_main_scala_mahjonggameview_SwingSetupsPanel"/>abstract class SwingSetupsPanel<span class="non">(setups:List[Setup], caption:String) extends GridPanel(setups.size+1, 1) {
+</span></td>
+          </tr><tr>
+            <td class="red">13</td>
+            <td>  val setupsPanel = <span class="non">this
+</span></td>
+          </tr><tr>
+            <td class="red">14</td>
+            <td>  val label = <span class="non">new Label(caption)
+</span></td>
+          </tr><tr>
+            <td class="red">15</td>
+            <td>  <span class="non">label.peer.setFont(new Font(&quot;SansSerif&quot;, java.awt.Font.PLAIN, 24))
+</span></td>
+          </tr><tr>
+            <td class="red">16</td>
+            <td>  <span class="non">contents += label
+</span></td>
+          </tr><tr>
+            <td class="red">17</td>
+            <td>  for (<span class="non">setup &lt;- setups) {
+</span></td>
+          </tr><tr>
+            <td class="red">18</td>
+            <td>    <span class="non">contents += new Button {
+</span></td>
+          </tr><tr>
+            <td class="red">19</td>
+            <td>      <span class="non">setupsPanel.listenTo(this)
+</span></td>
+          </tr><tr>
+            <td class="red">20</td>
+            <td>      <span class="non">action = Action(setup.name) {
+</span></td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>        setupsPanel.publish(notification(setup))
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="red">23</td>
+            <td>      <span class="non">icon = new ImageIcon(setup.path.replace(&quot;.txt&quot;, &quot;.png&quot;))
+</span></td>
+          </tr><tr>
+            <td class="red">24</td>
+            <td>      <span class="non">iconTextGap = 20
+</span></td>
+          </tr><tr>
+            <td class="red">25</td>
+            <td>      <span class="non">focusPainted = false
+</span></td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>  def notification(setup:Setup) : Event
+</td>
+          </tr><tr>
+            <td class="black">30</td>
+            <td>}
+</td>
+          </tr></tbody></table>

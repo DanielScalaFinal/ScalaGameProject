@@ -1,0 +1,97 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamemodel/<span class="header">&#x200B;TileType.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_TileType.scala.html#Class_main_scala_mahjonggamemodel_TileType"><img src="class.png"/>TileType</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_TileType.scala.html#Object_main_scala_mahjonggamemodel_TileType"><img src="object.png"/>TileType</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamemodel
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggameutil.FileUtil
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td><a id="Object_main_scala_mahjonggamemodel_TileType"/>object TileType {
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>  def LoadTileTypes(filePath:String) : IndexedSeq[TileType] = {
+</td>
+          </tr><tr>
+            <td class="green">7</td>
+            <td>    val lines = FileUtil.readLines(filePath)
+</td>
+          </tr><tr>
+            <td class="green">8</td>
+            <td>    for (i &lt;- 0 until lines.length) yield {
+</td>
+          </tr><tr>
+            <td class="green">9</td>
+            <td>      new TileType(i, lines(i))
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">14</td>
+            <td><a id="Class_main_scala_mahjonggamemodel_TileType"/>class TileType(val id:Int, val name:String) {
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>  override def toString = {
+</td>
+          </tr><tr>
+            <td class="green">16</td>
+            <td>    &quot;TileType[&quot; + id.toString + &quot;,\&quot;&quot; + name + &quot;\&quot;]&quot;
+</td>
+          </tr><tr>
+            <td class="black">17</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>}
+</td>
+          </tr></tbody></table>

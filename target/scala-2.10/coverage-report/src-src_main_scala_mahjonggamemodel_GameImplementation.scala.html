@@ -1,0 +1,569 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamemodel/<span class="header">&#x200B;GameImplementation.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_GameImplementation.scala.html#Class_main_scala_mahjonggamemodel_GameImplementation"><img src="class.png"/>GameImplementation</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_GameImplementation.scala.html#Object_main_scala_mahjonggamemodel_GameImplementation"><img src="object.png"/>GameImplementation</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamemodel
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td><a id="Object_main_scala_mahjonggamemodel_GameImplementation"/>object GameImplementation {
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>  def create(scoreFile:String = &quot;scores.txt&quot;, tilesFile:String = &quot;tiles.txt&quot;, setupsDir:String = &quot;setups/&quot;) = {
+</td>
+          </tr><tr>
+            <td class="green">6</td>
+            <td>    val tileTypes = TileType.LoadTileTypes(tilesFile)
+</td>
+          </tr><tr>
+            <td class="green">7</td>
+            <td>    val scores = new Scores(scoreFile)
+</td>
+          </tr><tr>
+            <td class="green">8</td>
+            <td>    val setups = Setup.CreateSetupsList(setupsDir)
+</td>
+          </tr><tr>
+            <td class="green">9</td>
+            <td>    val generator:Generator = new ReverseGenerator
+</td>
+          </tr><tr>
+            <td class="green">10</td>
+            <td>    new GameImplementation(tileTypes, scores, setups, generator)
+</td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">14</td>
+            <td><a id="Class_main_scala_mahjonggamemodel_GameImplementation"/>class GameImplementation private (val tileTypes:IndexedSeq[TileType], val scores:Scores, val setups:List[Setup], generator:Generator) extends Game {
+</td>
+          </tr><tr>
+            <td class="green">15</td>
+            <td>  var width = 40
+</td>
+          </tr><tr>
+            <td class="green">16</td>
+            <td>  var height = 26
+</td>
+          </tr><tr>
+            <td class="green">17</td>
+            <td>  var tiles = Map[Int, Tile]()
+</td>
+          </tr><tr>
+            <td class="green">18</td>
+            <td>  private var currentSetup:Setup = null
+</td>
+          </tr><tr>
+            <td class="green">19</td>
+            <td>  private var startTime : Long = 0
+</td>
+          </tr><tr>
+            <td class="green">20</td>
+            <td>  private var penalty = 0
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">22</td>
+            <td>  def calcTileIndex(tile:Tile) : Int = calcTileIndex(tile.x, tile.y, tile.z)
+</td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">24</td>
+            <td>  private def calcTileIndex(x:Int, y:Int, z:Int) = z * width * height + y * width + x
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">26</td>
+            <td>  def +=(tile:Tile) = tiles += (calcTileIndex(tile) -&gt; tile)
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">28</td>
+            <td>  def -=(tile:Tile) = tiles -= calcTileIndex(tile)
+</td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">30</td>
+            <td>  def sortedTiles() : List[Tile] = {
+</td>
+          </tr><tr>
+            <td class="green">31</td>
+            <td>    val list = tiles.map(_._2).toList
+</td>
+          </tr><tr>
+            <td class="green">32</td>
+            <td>    implicit val tileOrdering = Ordering.by((t: Tile) =&gt; (t.z, t.y, t.x))
+</td>
+          </tr><tr>
+            <td class="green">33</td>
+            <td>    list.sorted
+</td>
+          </tr><tr>
+            <td class="black">34</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">36</td>
+            <td>  private def possibleTileIndices(x:Double, y:Double, z:Double) : IndexedSeq[Int] = {
+</td>
+          </tr><tr>
+            <td class="green">37</td>
+            <td>    val ix = math.floor(x).toInt
+</td>
+          </tr><tr>
+            <td class="green">38</td>
+            <td>    val iy = math.floor(y).toInt
+</td>
+          </tr><tr>
+            <td class="green">39</td>
+            <td>    val iz = math.floor(z).toInt
+</td>
+          </tr><tr>
+            <td class="green">40</td>
+            <td>    for (i &lt;- 0 until Tile.Width; j &lt;- 0 until Tile.Height) yield {
+</td>
+          </tr><tr>
+            <td class="green">41</td>
+            <td>      calcTileIndex(ix - i, iy - j, iz)
+</td>
+          </tr><tr>
+            <td class="black">42</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">43</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">44</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>  def findTile(x:Double, y:Double, z:Double) : Tile = {
+</td>
+          </tr><tr>
+            <td class="green">46</td>
+            <td>    val indices = possibleTileIndices(x, y, z)
+</td>
+          </tr><tr>
+            <td class="green">47</td>
+            <td>    val foundTiles = tiles.filter(p =&gt; indices.contains(p._1) &amp;&amp; p._2.isInside(x, y, z))
+</td>
+          </tr><tr>
+            <td class="green">48</td>
+            <td>    if (foundTiles.nonEmpty) foundTiles.last._2 else null
+</td>
+          </tr><tr>
+            <td class="black">49</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">50</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">51</td>
+            <td>  def topmostTile(x:Int, y:Int) : Tile = {
+</td>
+          </tr><tr>
+            <td class="green">52</td>
+            <td>    val stack = tiles.filter(p =&gt; p._2.isInside(x, y)).map(_._2).toList
+</td>
+          </tr><tr>
+            <td class="green">53</td>
+            <td>    if (stack.nonEmpty) stack.sortWith(_.z &lt; _.z).last else null
+</td>
+          </tr><tr>
+            <td class="black">54</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">56</td>
+            <td>  private def canMove(tile:Tile, xd:Int, yd:Int, zd:Int) : Boolean = {
+</td>
+          </tr><tr>
+            <td class="green">57</td>
+            <td>    val z = tile.z + zd
+</td>
+          </tr><tr>
+            <td class="green">58</td>
+            <td>    tile.testPoints.forall(point =&gt; {
+</td>
+          </tr><tr>
+            <td class="green">59</td>
+            <td>      val x = point.x + xd
+</td>
+          </tr><tr>
+            <td class="green">60</td>
+            <td>      val y = point.y + yd
+</td>
+          </tr><tr>
+            <td class="green">61</td>
+            <td>      val found = findTile(x, y, z)
+</td>
+          </tr><tr>
+            <td class="green">62</td>
+            <td>      (found == null || tile == found)
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>    }) 
+</td>
+          </tr><tr>
+            <td class="black">64</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">65</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">66</td>
+            <td>  private def canMoveUp(tile:Tile) = canMove(tile, 0, 0, 1)
+</td>
+          </tr><tr>
+            <td class="black">67</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">68</td>
+            <td>  private def canMoveRight(tile:Tile) = canMove(tile, 1, 0, 0)
+</td>
+          </tr><tr>
+            <td class="black">69</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">70</td>
+            <td>  private def canMoveLeft(tile:Tile) = canMove(tile, -1, 0, 0)
+</td>
+          </tr><tr>
+            <td class="black">71</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">72</td>
+            <td>  def canMove(tile:Tile) : Boolean = {
+</td>
+          </tr><tr>
+            <td class="green">73</td>
+            <td>    val up = canMoveUp(tile)
+</td>
+          </tr><tr>
+            <td class="green">74</td>
+            <td>    val ul = up &amp;&amp; canMoveLeft(tile)
+</td>
+          </tr><tr>
+            <td class="green">75</td>
+            <td>    val ur = up &amp;&amp; canMoveRight(tile)
+</td>
+          </tr><tr>
+            <td class="green">76</td>
+            <td>    ul || ur
+</td>
+          </tr><tr>
+            <td class="black">77</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">78</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">79</td>
+            <td>  def play(tile1:Tile, tile2:Tile) : Boolean = {
+</td>
+          </tr><tr>
+            <td class="green">80</td>
+            <td>    if (startTime == 0)
+</td>
+          </tr><tr>
+            <td class="green">81</td>
+            <td>      startTime = System.currentTimeMillis
+</td>
+          </tr><tr>
+            <td class="black">82</td>
+            <td>    
+</td>
+          </tr><tr>
+            <td class="green">83</td>
+            <td>    if (tile1 == tile2)
+</td>
+          </tr><tr>
+            <td class="green">84</td>
+            <td>      false
+</td>
+          </tr><tr>
+            <td class="green">85</td>
+            <td>    else if (tile1.tileType != tile2.tileType)
+</td>
+          </tr><tr>
+            <td class="green">86</td>
+            <td>      false
+</td>
+          </tr><tr>
+            <td class="green">87</td>
+            <td>    else if (!canMove(tile1) || !canMove(tile2))
+</td>
+          </tr><tr>
+            <td class="green">88</td>
+            <td>      false
+</td>
+          </tr><tr>
+            <td class="black">89</td>
+            <td>    else {
+</td>
+          </tr><tr>
+            <td class="green">90</td>
+            <td>      -=(tile1)
+</td>
+          </tr><tr>
+            <td class="green">91</td>
+            <td>      -=(tile2)
+</td>
+          </tr><tr>
+            <td class="green">92</td>
+            <td>      true
+</td>
+          </tr><tr>
+            <td class="black">93</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">94</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">95</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">96</td>
+            <td>  def addHintPenalty = penalty += Game.HintPenalty
+</td>
+          </tr><tr>
+            <td class="black">97</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">98</td>
+            <td>  def addMoveablesPenalty = penalty += Game.MoveablesPenalty
+</td>
+          </tr><tr>
+            <td class="black">99</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">100</td>
+            <td>  def hint : TilePair = {
+</td>
+          </tr><tr>
+            <td class="green">101</td>
+            <td>    val moveableTiles = tiles.map(_._2).filter(canMove(_))
+</td>
+          </tr><tr>
+            <td class="green">102</td>
+            <td>    for (i &lt;- moveableTiles; j &lt;- moveableTiles) {
+</td>
+          </tr><tr>
+            <td class="green">103</td>
+            <td>      if (i != j &amp;&amp; j.tileType == i.tileType)
+</td>
+          </tr><tr>
+            <td class="green">104</td>
+            <td>        return new TilePair(i, j)
+</td>
+          </tr><tr>
+            <td class="black">105</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="green">106</td>
+            <td>    null
+</td>
+          </tr><tr>
+            <td class="black">107</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">108</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">109</td>
+            <td>  def nextMovePossible : Boolean = hint != null
+</td>
+          </tr><tr>
+            <td class="black">110</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">111</td>
+            <td>  def setupById(setupId:String) = {
+</td>
+          </tr><tr>
+            <td class="green">112</td>
+            <td>    val filtered = setups.filter(_.id == setupId)
+</td>
+          </tr><tr>
+            <td class="green">113</td>
+            <td>    if (filtered.length == 1) filtered(0)
+</td>
+          </tr><tr>
+            <td class="green">114</td>
+            <td>    else null
+</td>
+          </tr><tr>
+            <td class="black">115</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">116</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">117</td>
+            <td>  def scramble = generator.scramble(this)
+</td>
+          </tr><tr>
+            <td class="black">118</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">119</td>
+            <td>  def startNewGame(setup:Setup) {
+</td>
+          </tr><tr>
+            <td class="green">120</td>
+            <td>    generator.generate(this, setup.path)
+</td>
+          </tr><tr>
+            <td class="green">121</td>
+            <td>    startTime = 0
+</td>
+          </tr><tr>
+            <td class="green">122</td>
+            <td>    penalty = 0
+</td>
+          </tr><tr>
+            <td class="green">123</td>
+            <td>    currentSetup = setup
+</td>
+          </tr><tr>
+            <td class="black">124</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">125</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">126</td>
+            <td>  def gameTime : Int = {
+</td>
+          </tr><tr>
+            <td class="green">127</td>
+            <td>    if (startTime == 0) {
+</td>
+          </tr><tr>
+            <td class="green">128</td>
+            <td>      penalty
+</td>
+          </tr><tr>
+            <td class="black">129</td>
+            <td>    } else {
+</td>
+          </tr><tr>
+            <td class="green">130</td>
+            <td>      val elapsed = System.currentTimeMillis - startTime
+</td>
+          </tr><tr>
+            <td class="green">131</td>
+            <td>      elapsed.toInt + penalty
+</td>
+          </tr><tr>
+            <td class="black">132</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">133</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">134</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="green">135</td>
+            <td>  def setup : Setup = currentSetup
+</td>
+          </tr><tr>
+            <td class="black">136</td>
+            <td>}
+</td>
+          </tr></tbody></table>

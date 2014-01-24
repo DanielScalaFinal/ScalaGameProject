@@ -1,0 +1,157 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameutil/<span class="header">&#x200B;SimplePublisher.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameutil_SimplePublisher.scala.html#Class_main_scala_mahjonggameutil_SimpleNotification"><img src="class.png"/>SimpleNotification</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameutil_SimplePublisher.scala.html#Trait_main_scala_mahjonggameutil_SimplePublisher"><img src="trait.png"/>SimplePublisher</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameutil_SimplePublisher.scala.html#Trait_main_scala_mahjonggameutil_SimpleSubscriber"><img src="trait.png"/>SimpleSubscriber</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggameutil
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td><a id="Class_main_scala_mahjonggameutil_SimpleNotification"/>abstract class SimpleNotification
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">5</td>
+            <td><a id="Trait_main_scala_mahjonggameutil_SimplePublisher"/>trait SimplePublisher {
+</td>
+          </tr><tr>
+            <td class="green">6</td>
+            <td>  var subscribers = Set[SimpleSubscriber]()
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>  def sendNotification(notification:SimpleNotification) {
+</td>
+          </tr><tr>
+            <td class="green">9</td>
+            <td>    subscribers.foreach(subscriber =&gt; {
+</td>
+          </tr><tr>
+            <td class="green">10</td>
+            <td>      if (subscriber.notificationProcessor.isDefinedAt(notification)) {
+</td>
+          </tr><tr>
+            <td class="green">11</td>
+            <td>        subscriber.notificationProcessor.apply(notification)
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>    })
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">16</td>
+            <td>  def addSubscriber(subscriber:SimpleSubscriber) {
+</td>
+          </tr><tr>
+            <td class="green">17</td>
+            <td>    if (!subscribers.contains(subscriber))
+</td>
+          </tr><tr>
+            <td class="green">18</td>
+            <td>      subscribers += subscriber
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>  def remSubscriber(subscriber:SimpleSubscriber) {
+</td>
+          </tr><tr>
+            <td class="green">22</td>
+            <td>    if (subscribers.contains(subscriber))
+</td>
+          </tr><tr>
+            <td class="green">23</td>
+            <td>      subscribers -= subscriber
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td><a id="Trait_main_scala_mahjonggameutil_SimpleSubscriber"/>trait SimpleSubscriber {
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>  type Reaction = PartialFunction[SimpleNotification, Unit]
+</td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="green">30</td>
+            <td>  var notificationProcessor:Reaction = { case _ =&gt; /* Do nothing */ }
+</td>
+          </tr><tr>
+            <td class="black">31</td>
+            <td>}
+</td>
+          </tr></tbody></table>

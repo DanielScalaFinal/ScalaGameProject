@@ -1,0 +1,733 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamecontroller/<span class="header">&#x200B;MahjongController.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">98 %</div>
+        <div class="greenBar" style="width:196px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamecontroller_MahjongController.scala.html#Class_main_scala_mahjonggamecontroller_MahjongController"><img src="class.png"/>MahjongController</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">98 %</div>
+        <div class="greenBar" style="width:196px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamecontroller
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>/*
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td> * imports needed for viewer synchronisation matters 
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td> */
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import scala.util.Random
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>import scala.actors._
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>import scala.actors.Actor._
+</td>
+          </tr><tr>
+            <td class="black">9</td>
+            <td>import main.scala.mahjonggamemodel._
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>import main.scala.mahjonggameview.View
+</td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>import main.scala.mahjonggameutil.SimplePublisher
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>import main.scala.mahjonggamemodel.TilePair
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>import main.scala.mahjonggamemodel.Tile
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>import main.scala.mahjonggamemodel.Game
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>import main.scala.mahjonggamemodel.Setup
+</td>
+          </tr><tr>
+            <td class="black">16</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">17</td>
+            <td>/*
+</td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td> * Controller Pattern of the mahjong game
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td> */
+</td>
+          </tr><tr>
+            <td class="green">20</td>
+            <td><a id="Class_main_scala_mahjonggamecontroller_MahjongController"/>class MahjongController(val game:Game) extends SimplePublisher {
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="green">22</td>
+            <td>  private var views = List[View]()    // contains all views
+</td>
+          </tr><tr>
+            <td class="green">23</td>
+            <td>  private var selected:Tile = null    // outlook of the pawns in the game
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>   * attach a new view into the list
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>  def attachView(view:View) {
+</td>
+          </tr><tr>
+            <td class="green">29</td>
+            <td>    this.addSubscriber(view)
+</td>
+          </tr><tr>
+            <td class="green">30</td>
+            <td>    view.startView(this)
+</td>
+          </tr><tr>
+            <td class="green">31</td>
+            <td>    views = view :: views
+</td>
+          </tr><tr>
+            <td class="black">32</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">33</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">34</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>   * detach a view from the list
+</td>
+          </tr><tr>
+            <td class="black">36</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">37</td>
+            <td>  def detachView(view:View) {
+</td>
+          </tr><tr>
+            <td class="green">38</td>
+            <td>    view.stopView(this)
+</td>
+          </tr><tr>
+            <td class="green">39</td>
+            <td>    this.remSubscriber(view)
+</td>
+          </tr><tr>
+            <td class="green">40</td>
+            <td>    views = views.filter(v =&gt; v != view)
+</td>
+          </tr><tr>
+            <td class="green">41</td>
+            <td>    val withoutAutoClose = views.filter(!_.autoClose)
+</td>
+          </tr><tr>
+            <td class="green">42</td>
+            <td>    if (withoutAutoClose.length == 0) {
+</td>
+          </tr><tr>
+            <td class="green">43</td>
+            <td>      views.foreach(_.stopView(this))
+</td>
+          </tr><tr>
+            <td class="green">44</td>
+            <td>      closeApplication
+</td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">46</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">47</td>
+            <td>  /* get scores */
+</td>
+          </tr><tr>
+            <td class="green">48</td>
+            <td>  def scores = game.scores
+</td>
+          </tr><tr>
+            <td class="black">49</td>
+            <td>  /* get a tile */
+</td>
+          </tr><tr>
+            <td class="green">50</td>
+            <td>  def tiles = game.tiles
+</td>
+          </tr><tr>
+            <td class="black">51</td>
+            <td>  /* get playing field */ 
+</td>
+          </tr><tr>
+            <td class="green">52</td>
+            <td>  def setups = game.setups
+</td>
+          </tr><tr>
+            <td class="black">53</td>
+            <td>  /* get types of tiles */
+</td>
+          </tr><tr>
+            <td class="green">54</td>
+            <td>  def tileTypes = game.tileTypes
+</td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>  /* get field height */
+</td>
+          </tr><tr>
+            <td class="green">56</td>
+            <td>  def fieldHeight = game.height
+</td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>  /* get field width */
+</td>
+          </tr><tr>
+            <td class="green">58</td>
+            <td>  def fieldWidth = game.width
+</td>
+          </tr><tr>
+            <td class="black">59</td>
+            <td>  /* check move */
+</td>
+          </tr><tr>
+            <td class="green">60</td>
+            <td>  def canMove(tile:Tile) = game.canMove(tile)
+</td>
+          </tr><tr>
+            <td class="black">61</td>
+            <td>  /* compute tile index */
+</td>
+          </tr><tr>
+            <td class="green">62</td>
+            <td>  def calcTileIndex(tile:Tile) = game.calcTileIndex(tile)
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>  /* set setup */
+</td>
+          </tr><tr>
+            <td class="green">64</td>
+            <td>  def setupById(id:String) = game.setupById(id)
+</td>
+          </tr><tr>
+            <td class="black">65</td>
+            <td>  /* check tile */
+</td>
+          </tr><tr>
+            <td class="green">66</td>
+            <td>  def topmostTile(x:Int, y:Int) = game.topmostTile(x, y)
+</td>
+          </tr><tr>
+            <td class="black">67</td>
+            <td>  /* support feature hint */
+</td>
+          </tr><tr>
+            <td class="green">68</td>
+            <td>  def hint = game.hint
+</td>
+          </tr><tr>
+            <td class="black">69</td>
+            <td>  /* sort tiles */
+</td>
+          </tr><tr>
+            <td class="green">70</td>
+            <td>  def sortedTiles = game.sortedTiles
+</td>
+          </tr><tr>
+            <td class="black">71</td>
+            <td>  /* find tile */
+</td>
+          </tr><tr>
+            <td class="green">72</td>
+            <td>  def findTile(x:Int, y:Int, z:Int) = game.findTile(x, y, z)
+</td>
+          </tr><tr>
+            <td class="black">73</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">74</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">75</td>
+            <td>   * start a new game 
+</td>
+          </tr><tr>
+            <td class="black">76</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">77</td>
+            <td>  def startNewGame(setup:Setup) {
+</td>
+          </tr><tr>
+            <td class="green">78</td>
+            <td>    game.startNewGame(setup)
+</td>
+          </tr><tr>
+            <td class="green">79</td>
+            <td>    sendNotification(new CreatedGameNotification)
+</td>
+          </tr><tr>
+            <td class="green">80</td>
+            <td>    sendNotification(new StopHintNotification)
+</td>
+          </tr><tr>
+            <td class="green">81</td>
+            <td>    sendNotification(new StopMoveablesNotification)
+</td>
+          </tr><tr>
+            <td class="black">82</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">83</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">84</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">85</td>
+            <td>   * scramble the setup of the tiles on the playing field 
+</td>
+          </tr><tr>
+            <td class="black">86</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">87</td>
+            <td>  def scramble {
+</td>
+          </tr><tr>
+            <td class="green">88</td>
+            <td>    game.scramble
+</td>
+          </tr><tr>
+            <td class="green">89</td>
+            <td>    sendNotification(new ScrambledNotification)
+</td>
+          </tr><tr>
+            <td class="black">90</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">91</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">92</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">93</td>
+            <td>   * give a hint for next possible move 
+</td>
+          </tr><tr>
+            <td class="black">94</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">95</td>
+            <td>  def requestHint {
+</td>
+          </tr><tr>
+            <td class="green">96</td>
+            <td>    val hint = game.hint
+</td>
+          </tr><tr>
+            <td class="green">97</td>
+            <td>    if (hint != null) {
+</td>
+          </tr><tr>
+            <td class="green">98</td>
+            <td>      game.addHintPenalty
+</td>
+          </tr><tr>
+            <td class="green">99</td>
+            <td>      sendNotification(new StartHintNotification(hint))
+</td>
+          </tr><tr>
+            <td class="green">100</td>
+            <td>      new Actor {
+</td>
+          </tr><tr>
+            <td class="black">101</td>
+            <td>        def act {
+</td>
+          </tr><tr>
+            <td class="black">102</td>
+            <td>          reactWithin(Game.HintTimeout) {
+</td>
+          </tr><tr>
+            <td class="black">103</td>
+            <td>            case TIMEOUT =&gt; sendNotification(new StopHintNotification)
+</td>
+          </tr><tr>
+            <td class="black">104</td>
+            <td>          }
+</td>
+          </tr><tr>
+            <td class="black">105</td>
+            <td>        }
+</td>
+          </tr><tr>
+            <td class="black">106</td>
+            <td>      }.start();
+</td>
+          </tr><tr>
+            <td class="black">107</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">108</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">109</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">110</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">111</td>
+            <td>   * check move 
+</td>
+          </tr><tr>
+            <td class="black">112</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">113</td>
+            <td>  def requestMoveables {
+</td>
+          </tr><tr>
+            <td class="green">114</td>
+            <td>    game.addMoveablesPenalty
+</td>
+          </tr><tr>
+            <td class="green">115</td>
+            <td>    sendNotification(new StartMoveablesNotification)
+</td>
+          </tr><tr>
+            <td class="green">116</td>
+            <td>    new Actor {
+</td>
+          </tr><tr>
+            <td class="black">117</td>
+            <td>      def act {
+</td>
+          </tr><tr>
+            <td class="black">118</td>
+            <td>        reactWithin(Game.MoveablesTimeout) {
+</td>
+          </tr><tr>
+            <td class="black">119</td>
+            <td>          case TIMEOUT =&gt; sendNotification(new StopMoveablesNotification)
+</td>
+          </tr><tr>
+            <td class="black">120</td>
+            <td>        }
+</td>
+          </tr><tr>
+            <td class="black">121</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">122</td>
+            <td>    }.start();
+</td>
+          </tr><tr>
+            <td class="black">123</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">124</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">125</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">126</td>
+            <td>   * select the tile
+</td>
+          </tr><tr>
+            <td class="black">127</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">128</td>
+            <td>  def selectTile(newSelectedTile:Tile) {
+</td>
+          </tr><tr>
+            <td class="green">129</td>
+            <td>    if (newSelectedTile == null) {
+</td>
+          </tr><tr>
+            <td class="green">130</td>
+            <td>      if (selected != null) {
+</td>
+          </tr><tr>
+            <td class="green">131</td>
+            <td>        selected = null
+</td>
+          </tr><tr>
+            <td class="green">132</td>
+            <td>        sendNotification(new TileSelectedNotification(selected))
+</td>
+          </tr><tr>
+            <td class="black">133</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="green">134</td>
+            <td>    } else if (newSelectedTile == selected) {
+</td>
+          </tr><tr>
+            <td class="black">135</td>
+            <td>      // Nothing to do!
+</td>
+          </tr><tr>
+            <td class="green">136</td>
+            <td>    } else if (game.canMove(newSelectedTile)) {
+</td>
+          </tr><tr>
+            <td class="green">137</td>
+            <td>      if (selected != null &amp;&amp; selected.tileType == newSelectedTile.tileType) {
+</td>
+          </tr><tr>
+            <td class="green">138</td>
+            <td>        val selectedTile = selected
+</td>
+          </tr><tr>
+            <td class="green">139</td>
+            <td>        selected = null
+</td>
+          </tr><tr>
+            <td class="green">140</td>
+            <td>        sendNotification(new TileSelectedNotification(selected))
+</td>
+          </tr><tr>
+            <td class="green">141</td>
+            <td>        playTilePair(selectedTile, newSelectedTile)
+</td>
+          </tr><tr>
+            <td class="black">142</td>
+            <td>      } else {
+</td>
+          </tr><tr>
+            <td class="green">143</td>
+            <td>        selected = newSelectedTile
+</td>
+          </tr><tr>
+            <td class="green">144</td>
+            <td>        sendNotification(new TileSelectedNotification(selected))
+</td>
+          </tr><tr>
+            <td class="black">145</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">146</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">147</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">148</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">149</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">150</td>
+            <td>   * check if both picked tiles have the same id 
+</td>
+          </tr><tr>
+            <td class="black">151</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">152</td>
+            <td>  private def playTilePair(tile1:Tile, tile2:Tile) {
+</td>
+          </tr><tr>
+            <td class="green">153</td>
+            <td>    if (game.play(tile1, tile2)) {
+</td>
+          </tr><tr>
+            <td class="green">154</td>
+            <td>      sendNotification(new TilesRemovedNotification(new TilePair(tile1, tile2)))
+</td>
+          </tr><tr>
+            <td class="green">155</td>
+            <td>      if (game.tiles.size == 0) {
+</td>
+          </tr><tr>
+            <td class="green">156</td>
+            <td>        val time = game.gameTime
+</td>
+          </tr><tr>
+            <td class="green">157</td>
+            <td>        val inScoreBoard = game.scores.isInScoreboard(game.setup, time)
+</td>
+          </tr><tr>
+            <td class="green">158</td>
+            <td>        sendNotification(new WonNotification(game.setup, time, inScoreBoard))
+</td>
+          </tr><tr>
+            <td class="green">159</td>
+            <td>      } else if (!game.nextMovePossible) {
+</td>
+          </tr><tr>
+            <td class="green">160</td>
+            <td>        sendNotification(new NoFurtherMovesNotification)
+</td>
+          </tr><tr>
+            <td class="black">161</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">162</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">163</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">164</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">165</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">166</td>
+            <td>   * save score 
+</td>
+          </tr><tr>
+            <td class="black">167</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">168</td>
+            <td>  def addScore(setup:Setup, playerName:String, ms:Int) {
+</td>
+          </tr><tr>
+            <td class="green">169</td>
+            <td>    val position = game.scores.addScore(setup, playerName, ms)
+</td>
+          </tr><tr>
+            <td class="green">170</td>
+            <td>    sendNotification(new NewScoreBoardEntryNotification(setup, position))
+</td>
+          </tr><tr>
+            <td class="black">171</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">172</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">173</td>
+            <td>  /* 
+</td>
+          </tr><tr>
+            <td class="black">174</td>
+            <td>   * exit game 
+</td>
+          </tr><tr>
+            <td class="black">175</td>
+            <td>   */
+</td>
+          </tr><tr>
+            <td class="black">176</td>
+            <td>  protected def closeApplication {
+</td>
+          </tr><tr>
+            <td class="red">177</td>
+            <td>    <span class="non">System.exit(0)
+</span></td>
+          </tr><tr>
+            <td class="black">178</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">179</td>
+            <td>}
+</td>
+          </tr></tbody></table>

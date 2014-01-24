@@ -1,0 +1,25 @@
+[0m[[0minfo[0m] [0mImplementationTest[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mA GameImplementation should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have setups[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have tile types[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can create a new test game[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can calculate a tile index[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can have tiles added and removed[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m provides sorted tiles[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can find tiles by coords[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can detected (un)moveable tiles[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can play a tile pair[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can provide a hint[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can scramble the game[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can get a setup by id[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can add a penalty[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can find the topmost tile[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can detect invalid plays and dead ends[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can return the current setup[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can calculate the game time[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can detect if a next move is possible[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification ImplementationTest[0m
+[0m[[0minfo[0m] [0m[34mFinished in 0 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m[0m[34m18 examples, 0 failure, 0 error[0m[0m

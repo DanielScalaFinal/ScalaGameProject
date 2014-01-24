@@ -1,0 +1,125 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamemodel/<span class="header">&#x200B;Setup.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Setup.scala.html#Class_main_scala_mahjonggamemodel_Setup"><img src="class.png"/>Setup</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_Setup.scala.html#Object_main_scala_mahjonggamemodel_Setup"><img src="object.png"/>Setup</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamemodel
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import java.io.File
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import main.scala.mahjonggameutil.FileUtil
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import scala.Array.canBuildFrom
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td><a id="Object_main_scala_mahjonggamemodel_Setup"/>object Setup {
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>  def CreateSetupsList(setupsDir:String) = {
+</td>
+          </tr><tr>
+            <td class="green">9</td>
+            <td>    val fileArray = new File(setupsDir).listFiles
+</td>
+          </tr><tr>
+            <td class="green">10</td>
+            <td>    val fileNames = fileArray.map(f =&gt; f.getPath)
+</td>
+          </tr><tr>
+            <td class="green">11</td>
+            <td>    val filteredFileNames = fileNames.filter(_.endsWith(&quot;.txt&quot;))
+</td>
+          </tr><tr>
+            <td class="green">12</td>
+            <td>    filteredFileNames.map(Setup(_)).toList
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>  def apply(setupFile:String) = {
+</td>
+          </tr><tr>
+            <td class="green">16</td>
+            <td>    val lines = FileUtil.readLines(setupFile)
+</td>
+          </tr><tr>
+            <td class="green">17</td>
+            <td>    new Setup(lines(0), lines(1), setupFile)
+</td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td>}
+</td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">21</td>
+            <td><a id="Class_main_scala_mahjonggamemodel_Setup"/>class Setup(val id:String, val name:String, val path:String) {
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>  override def toString = {
+</td>
+          </tr><tr>
+            <td class="green">23</td>
+            <td>    &quot;Setup[ID: &quot; + id + &quot;; name: &quot; + name + &quot;; path: &quot; + path + &quot;]&quot;
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>}
+</td>
+          </tr></tbody></table>

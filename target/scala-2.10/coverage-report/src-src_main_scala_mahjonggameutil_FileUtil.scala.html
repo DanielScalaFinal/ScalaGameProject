@@ -1,0 +1,269 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameutil/<span class="header">&#x200B;FileUtil.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameutil_FileUtil.scala.html#Object_main_scala_mahjonggameutil_FileUtil"><img src="object.png"/>FileUtil</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>/*
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td> * necessary functions needed for load and storing
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td> * data form/into files
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td> * */
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>package main.scala.mahjonggameutil
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>import scala.io.Source
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>import java.io.File
+</td>
+          </tr><tr>
+            <td class="black">9</td>
+            <td>import java.io.FileInputStream
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>import java.io.PrintWriter
+</td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td><a id="Object_main_scala_mahjonggameutil_FileUtil"/>object FileUtil {
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>   * read data from a file
+</td>
+          </tr><tr>
+            <td class="black">16</td>
+            <td>   * */
+</td>
+          </tr><tr>
+            <td class="black">17</td>
+            <td>  def readText(file:String) : String = {
+</td>
+          </tr><tr>
+            <td class="green">18</td>
+            <td>    val source = Source.fromFile(file)
+</td>
+          </tr><tr>
+            <td class="green">19</td>
+            <td>    val lines = source.mkString
+</td>
+          </tr><tr>
+            <td class="green">20</td>
+            <td>    source.close
+</td>
+          </tr><tr>
+            <td class="green">21</td>
+            <td>    lines
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>   * write data into a file
+</td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>   * */
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>  def writeText(file:String, content:String) {
+</td>
+          </tr><tr>
+            <td class="green">28</td>
+            <td>    val writer = new PrintWriter(new File(file))
+</td>
+          </tr><tr>
+            <td class="green">29</td>
+            <td>    writer.write(content)
+</td>
+          </tr><tr>
+            <td class="green">30</td>
+            <td>    writer.close
+</td>
+          </tr><tr>
+            <td class="black">31</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">32</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">33</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">34</td>
+            <td>   * read a file line by line
+</td>
+          </tr><tr>
+            <td class="black">35</td>
+            <td>   * */
+</td>
+          </tr><tr>
+            <td class="black">36</td>
+            <td>  def readLines(file:String) : List[String] = {
+</td>
+          </tr><tr>
+            <td class="green">37</td>
+            <td>    val source = Source.fromFile(file)
+</td>
+          </tr><tr>
+            <td class="green">38</td>
+            <td>    var lines = List[String]()
+</td>
+          </tr><tr>
+            <td class="green">39</td>
+            <td>    source.getLines.foreach(l =&gt; lines = l :: lines)
+</td>
+          </tr><tr>
+            <td class="green">40</td>
+            <td>    source.close
+</td>
+          </tr><tr>
+            <td class="green">41</td>
+            <td>    lines.reverse
+</td>
+          </tr><tr>
+            <td class="black">42</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">43</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">44</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>   * read a file bytewise
+</td>
+          </tr><tr>
+            <td class="black">46</td>
+            <td>   * */
+</td>
+          </tr><tr>
+            <td class="black">47</td>
+            <td>  def readBytes(file:String) : Array[Byte] = {
+</td>
+          </tr><tr>
+            <td class="green">48</td>
+            <td>    val is = new FileInputStream(file)
+</td>
+          </tr><tr>
+            <td class="green">49</td>
+            <td>    val cnt = is.available
+</td>
+          </tr><tr>
+            <td class="green">50</td>
+            <td>    val bytes = Array.ofDim[Byte](cnt)
+</td>
+          </tr><tr>
+            <td class="green">51</td>
+            <td>    is.read(bytes)
+</td>
+          </tr><tr>
+            <td class="green">52</td>
+            <td>    is.close
+</td>
+          </tr><tr>
+            <td class="green">53</td>
+            <td>    bytes
+</td>
+          </tr><tr>
+            <td class="black">54</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">56</td>
+            <td>  /*
+</td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>   * check file existence before interaction
+</td>
+          </tr><tr>
+            <td class="black">58</td>
+            <td>   * */
+</td>
+          </tr><tr>
+            <td class="black">59</td>
+            <td>  def exists(file:String) : Boolean = {
+</td>
+          </tr><tr>
+            <td class="green">60</td>
+            <td>    val f = new File(file)
+</td>
+          </tr><tr>
+            <td class="green">61</td>
+            <td>    f.exists
+</td>
+          </tr><tr>
+            <td class="black">62</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>}
+</td>
+          </tr></tbody></table>

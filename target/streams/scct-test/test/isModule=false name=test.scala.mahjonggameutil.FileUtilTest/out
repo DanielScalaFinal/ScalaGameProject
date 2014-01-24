@@ -1,0 +1,12 @@
+[0m[[0minfo[0m] [0mFileUtilTest[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mA FileUtil should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can write text to a file[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can read text from a file[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can read lines from a file[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can read binary data from a file[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m can check if a file exists[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification FileUtilTest[0m
+[0m[[0minfo[0m] [0m[34mFinished in 0 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m[0m[34m5 examples, 0 failure, 0 error[0m[0m

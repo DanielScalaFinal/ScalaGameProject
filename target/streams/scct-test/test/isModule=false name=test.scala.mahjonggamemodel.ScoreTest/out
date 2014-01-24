@@ -1,0 +1,17 @@
+[0m[[0minfo[0m] [0mScoreTest[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mA ScoreEntry should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have a setupId[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have a name[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m have a ms[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m be a string[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m  A Scores instance should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m can check if a time will be in the scores[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m will return sorted scores[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m can calculate the position for a time[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m can add and save new scores[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification ScoreTest[0m
+[0m[[0minfo[0m] [0m[34mFinished in 0 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m[0m[34m8 examples, 0 failure, 0 error[0m[0m

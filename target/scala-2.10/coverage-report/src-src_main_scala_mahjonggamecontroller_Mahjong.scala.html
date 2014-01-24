@@ -1,0 +1,105 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamecontroller/<span class="header">&#x200B;Mahjong.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamecontroller_Mahjong.scala.html#Object_main_scala_mahjonggamecontroller_Mahjong"><img src="object.png"/>Mahjong</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamecontroller
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggameview.TextUI
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import main.scala.mahjonggameview.SwingView
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import main.scala.mahjonggamemodel.GameImplementation
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td><a id="Object_main_scala_mahjonggamecontroller_Mahjong"/>object Mahjong {
+</td>
+          </tr><tr>
+            <td class="black">8</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">9</td>
+            <td>    val game = <span class="non">GameImplementation.create()
+</span></td>
+          </tr><tr>
+            <td class="red">10</td>
+            <td>  val controller = <span class="non">new MahjongController(game)
+</span></td>
+          </tr><tr>
+            <td class="black">11</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>    def main (args: Array[String])  {
+</td>
+          </tr><tr>
+            <td class="black">13</td>
+            <td>    // create and attach new swing view
+</td>
+          </tr><tr>
+            <td class="red">14</td>
+            <td>    <span class="non">controller.attachView(new SwingView)
+</span></td>
+          </tr><tr>
+            <td class="black">15</td>
+            <td>    // create and attach new textual view
+</td>
+          </tr><tr>
+            <td class="red">16</td>
+            <td>    val tui = <span class="non">new TextUI
+</span></td>
+          </tr><tr>
+            <td class="red">17</td>
+            <td>    <span class="non">controller.attachView(tui)
+</span></td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>    // run application until game exit
+</td>
+          </tr><tr>
+            <td class="red">19</td>
+            <td>    while (<span class="non">tui.readCommand) {}
+</span></td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>}
+</td>
+          </tr></tbody></table>

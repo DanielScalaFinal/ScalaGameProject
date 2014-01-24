@@ -1,0 +1,273 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggamemodel/<span class="header">&#x200B;ReverseGenerator.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggamemodel_ReverseGenerator.scala.html#Class_main_scala_mahjonggamemodel_ReverseGenerator"><img src="class.png"/>ReverseGenerator</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">100 %</div>
+        <div class="greenBar" style="width:200px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggamemodel
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggameutil._
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>import scala.util.Random
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import util.matching.Regex
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import main.scala.mahjonggameutil.FileUtil
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="green">8</td>
+            <td><a id="Class_main_scala_mahjonggamemodel_ReverseGenerator"/>class ReverseGenerator extends Generator {
+</td>
+          </tr><tr>
+            <td class="black">9</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">10</td>
+            <td>  def scramble(game:Game) {
+</td>
+          </tr><tr>
+            <td class="green">11</td>
+            <td>    var reversed = List[TilePair]()
+</td>
+          </tr><tr>
+            <td class="green">12</td>
+            <td>    val random = new Random()
+</td>
+          </tr><tr>
+            <td class="green">13</td>
+            <td>    while (game.tiles.size &gt; 0) {
+</td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>      // Find two or more random outer tiles, remove them and store the coordinates
+</td>
+          </tr><tr>
+            <td class="green">15</td>
+            <td>      var removables = extractRemovableTiles(game)
+</td>
+          </tr><tr>
+            <td class="black">16</td>
+            <td>      // Continue until no more random removable tile pairs are left in the list
+</td>
+          </tr><tr>
+            <td class="green">17</td>
+            <td>      while (removables.length &gt; 1) {
+</td>
+          </tr><tr>
+            <td class="green">18</td>
+            <td>        val index1 = random.nextInt(removables.length)
+</td>
+          </tr><tr>
+            <td class="green">19</td>
+            <td>        var index2 = random.nextInt(removables.length)
+</td>
+          </tr><tr>
+            <td class="green">20</td>
+            <td>        while (index1 == index2) index2 = (index2 + 1) % removables.length
+</td>
+          </tr><tr>
+            <td class="green">21</td>
+            <td>        val pair = new TilePair(removables(index1), removables(index2))
+</td>
+          </tr><tr>
+            <td class="green">22</td>
+            <td>        reversed = pair :: reversed
+</td>
+          </tr><tr>
+            <td class="green">23</td>
+            <td>        removables = removables.filter(t =&gt; t != pair.tile1 &amp;&amp; t != pair.tile2)
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>      // Add remaining tiles to the field
+</td>
+          </tr><tr>
+            <td class="green">26</td>
+            <td>      removables.foreach(game += _)
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">28</td>
+            <td>    // Read the list from behind and and get random a random tile type for each pair to build the game
+</td>
+          </tr><tr>
+            <td class="green">29</td>
+            <td>    var typeRand = new Random().nextInt(game.tileTypes.length)
+</td>
+          </tr><tr>
+            <td class="green">30</td>
+            <td>    for (pair &lt;- reversed) {
+</td>
+          </tr><tr>
+            <td class="green">31</td>
+            <td>      val typeIndex = typeRand % game.tileTypes.length
+</td>
+          </tr><tr>
+            <td class="green">32</td>
+            <td>      typeRand += 1
+</td>
+          </tr><tr>
+            <td class="green">33</td>
+            <td>      pair.tile1.tileType = game.tileTypes(typeIndex)
+</td>
+          </tr><tr>
+            <td class="green">34</td>
+            <td>      pair.tile2.tileType = game.tileTypes(typeIndex)
+</td>
+          </tr><tr>
+            <td class="green">35</td>
+            <td>      game += pair.tile1
+</td>
+          </tr><tr>
+            <td class="green">36</td>
+            <td>      game += pair.tile2
+</td>
+          </tr><tr>
+            <td class="black">37</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">38</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">39</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">40</td>
+            <td>  def generate(game:Game, setupFile:String) {
+</td>
+          </tr><tr>
+            <td class="black">41</td>
+            <td>    // Place the full set without a tile type
+</td>
+          </tr><tr>
+            <td class="green">42</td>
+            <td>    loadStructure(game, null, setupFile)
+</td>
+          </tr><tr>
+            <td class="black">43</td>
+            <td>    // Set the tile types in a solvable order
+</td>
+          </tr><tr>
+            <td class="green">44</td>
+            <td>    scramble(game)
+</td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">46</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">47</td>
+            <td>  def loadStructure(game:Game, tileType:TileType, setupFile:String) {
+</td>
+          </tr><tr>
+            <td class="green">48</td>
+            <td>    game.tiles = Map()
+</td>
+          </tr><tr>
+            <td class="green">49</td>
+            <td>    val lines = FileUtil.readLines(setupFile)
+</td>
+          </tr><tr>
+            <td class="green">50</td>
+            <td>    val regexTile = new Regex(&quot;^(\\d+) (\\d+) (\\d+)$&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;)
+</td>
+          </tr><tr>
+            <td class="green">51</td>
+            <td>    val regexDims = new Regex(&quot;^(\\d+) (\\d+)$&quot;, &quot;width&quot;, &quot;height&quot;)
+</td>
+          </tr><tr>
+            <td class="green">52</td>
+            <td>    lines.foreach({ _ match {
+</td>
+          </tr><tr>
+            <td class="green">53</td>
+            <td>      case regexTile(x, y, z) =&gt; game += new Tile(x.toInt, y.toInt, z.toInt, tileType)
+</td>
+          </tr><tr>
+            <td class="green">54</td>
+            <td>      case regexDims(width, height) =&gt; game.width = width.toInt; game.height = height.toInt
+</td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>      case _ =&gt; // Nothing
+</td>
+          </tr><tr>
+            <td class="black">56</td>
+            <td>    }})
+</td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">58</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">59</td>
+            <td>  def extractRemovableTiles(game:Game) : List[Tile] = {
+</td>
+          </tr><tr>
+            <td class="green">60</td>
+            <td>    val removables = game.tiles.filter(p =&gt; game.canMove(p._2))
+</td>
+          </tr><tr>
+            <td class="green">61</td>
+            <td>    removables.foreach(game.tiles -= _._1)
+</td>
+          </tr><tr>
+            <td class="green">62</td>
+            <td>    removables.map(_._2).toList
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">64</td>
+            <td>}
+</td>
+          </tr></tbody></table>

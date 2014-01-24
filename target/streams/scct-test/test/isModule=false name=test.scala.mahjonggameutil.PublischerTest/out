@@ -1,0 +1,14 @@
+[0m[[0minfo[0m] [0mPublischerTest[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37mA SimpleSubscriber should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[32m+[0m process notifications[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m  A SimplePublisher should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m  [32m+[0m can attach and remove subscribers[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m    A SimplePublisher should[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m    [32m+[0m can notifiy subscribers[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0m[37m[0m[0m
+[0m[[0minfo[0m] [0m[37m[0mTotal for specification PublischerTest[0m
+[0m[[0minfo[0m] [0m[34mFinished in 344 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m[0m[34m3 examples, 0 failure, 0 error[0m[0m

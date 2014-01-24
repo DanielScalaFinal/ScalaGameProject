@@ -1,0 +1,865 @@
+<table class="classes"><tbody><tr>
+      <td class="barContainerLeft"><a href="#">&#x200B;mahjonggameview/<span class="header">&#x200B;TextUI.scala</span></a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr><tr>
+      <td class="barContainerLeft"><a href="src-src_main_scala_mahjonggameview_TextUI.scala.html#Class_main_scala_mahjonggameview_TextUI"><img src="class.png"/>TextUI</a></td>
+      <td class="barContainerRight"><div class="percentages">
+      <div class="bar">
+        <div class="percentage">0 %</div>
+        <div class="greenBar" style="width:0px;">&nbsp;</div>
+      </div>
+    </div></td>
+    </tr></tbody></table><table class="source"><tbody><tr>
+            <td class="black">1</td>
+            <td>package main.scala.mahjonggameview
+</td>
+          </tr><tr>
+            <td class="black">2</td>
+            <td>import main.scala.mahjonggamemodel._
+</td>
+          </tr><tr>
+            <td class="black">3</td>
+            <td>import main.scala.mahjonggamecontroller._
+</td>
+          </tr><tr>
+            <td class="black">4</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">5</td>
+            <td>import scala.actors.Actor
+</td>
+          </tr><tr>
+            <td class="black">6</td>
+            <td>import util.matching.Regex
+</td>
+          </tr><tr>
+            <td class="black">7</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">8</td>
+            <td><a id="Class_main_scala_mahjonggameview_TextUI"/>class TextUI<span class="non">() extends View {
+</span></td>
+          </tr><tr>
+            <td class="black">9</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">10</td>
+            <td>  private var run = <span class="non">true
+</span></td>
+          </tr><tr>
+            <td class="red">11</td>
+            <td>  private var controller:MahjongController = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="black">12</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="red">13</td>
+            <td>  <span class="non">printHelp
+</span></td>
+          </tr><tr>
+            <td class="black">14</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">15</td>
+            <td>  override def autoClose = <span class="non">true
+</span></td>
+          </tr><tr>
+            <td class="black">16</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="red">17</td>
+            <td>  <span class="non">notificationProcessor = {
+</span></td>
+          </tr><tr>
+            <td class="black">18</td>
+            <td>    case StartHintNotification(hint) =&gt; println(&quot;Hint: &quot; + controller.calcTileIndex(hint.tile1) + &quot; &quot; + controller.calcTileIndex(hint.tile2))
+</td>
+          </tr><tr>
+            <td class="black">19</td>
+            <td>    case StartMoveablesNotification() =&gt; printField(true)
+</td>
+          </tr><tr>
+            <td class="black">20</td>
+            <td>    case CreatedGameNotification() =&gt; printField(false)
+</td>
+          </tr><tr>
+            <td class="black">21</td>
+            <td>    case WonNotification(setup, ms, inScoreBoard) =&gt; println(&quot;You cleared the field in &quot; + (ms/1000.0) + &quot; seconds!&quot;)
+</td>
+          </tr><tr>
+            <td class="black">22</td>
+            <td>    case NoFurtherMovesNotification() =&gt; println(&quot;There are no further moves! Scramble?&quot;)
+</td>
+          </tr><tr>
+            <td class="black">23</td>
+            <td>    case TilesRemovedNotification(tiles) =&gt; println(&quot;Updated field:&quot;); printField(false)
+</td>
+          </tr><tr>
+            <td class="black">24</td>
+            <td>    case ScrambledNotification() =&gt; println(&quot;Scrambled field:&quot;); printField(false)
+</td>
+          </tr><tr>
+            <td class="black">25</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">26</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">27</td>
+            <td>  override def startView(controller:MahjongController) {
+</td>
+          </tr><tr>
+            <td class="red">28</td>
+            <td>    <span class="non">this.controller = controller;
+</span></td>
+          </tr><tr>
+            <td class="black">29</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">30</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">31</td>
+            <td>  def playTiles(a:Int, b:Int) {
+</td>
+          </tr><tr>
+            <td class="red">32</td>
+            <td>    if (<span class="non">!controller.tiles.contains(a))
+</span></td>
+          </tr><tr>
+            <td class="red">33</td>
+            <td>      <span class="non">println(&quot;Could not find tile with id &quot; + a + &quot;!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">34</td>
+            <td>    else if (<span class="non">!controller.tiles.contains(b))
+</span></td>
+          </tr><tr>
+            <td class="red">35</td>
+            <td>      <span class="non">println(&quot;Could not find tile with id &quot; + b + &quot;!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">36</td>
+            <td>    else {
+</td>
+          </tr><tr>
+            <td class="red">37</td>
+            <td>      val tile1 = <span class="non">controller.tiles(a)
+</span></td>
+          </tr><tr>
+            <td class="red">38</td>
+            <td>      val tile2 = <span class="non">controller.tiles(b)
+</span></td>
+          </tr><tr>
+            <td class="red">39</td>
+            <td>      if (<span class="non">tile1 == tile2) {
+</span></td>
+          </tr><tr>
+            <td class="red">40</td>
+            <td>        <span class="non">println(&quot;You have to selected two different tiles!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">41</td>
+            <td>      } else if (<span class="non">tile1.tileType.id != tile2.tileType.id) {
+</span></td>
+          </tr><tr>
+            <td class="red">42</td>
+            <td>        <span class="non">println(&quot;The tiles must be of the same type!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">43</td>
+            <td>      } else if (<span class="non">!controller.canMove(tile1) || !controller.canMove(tile2)) {
+</span></td>
+          </tr><tr>
+            <td class="red">44</td>
+            <td>        <span class="non">println(&quot;At least one the two selected tiles is not moveable!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">45</td>
+            <td>      } else {
+</td>
+          </tr><tr>
+            <td class="red">46</td>
+            <td>        <span class="non">controller.selectTile(null)
+</span></td>
+          </tr><tr>
+            <td class="red">47</td>
+            <td>        <span class="non">controller.selectTile(tile1)
+</span></td>
+          </tr><tr>
+            <td class="red">48</td>
+            <td>        <span class="non">controller.selectTile(tile2)
+</span></td>
+          </tr><tr>
+            <td class="black">49</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">50</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">51</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">52</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">53</td>
+            <td>  def scramble {
+</td>
+          </tr><tr>
+            <td class="red">54</td>
+            <td>    <span class="non">controller.scramble
+</span></td>
+          </tr><tr>
+            <td class="black">55</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">56</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">57</td>
+            <td>  def startGame(setupId:String) {
+</td>
+          </tr><tr>
+            <td class="red">58</td>
+            <td>    val setup = <span class="non">controller.setupById(setupId)
+</span></td>
+          </tr><tr>
+            <td class="red">59</td>
+            <td>    if (<span class="non">setup != null) {
+</span></td>
+          </tr><tr>
+            <td class="red">60</td>
+            <td>      <span class="non">controller.startNewGame(setup)
+</span></td>
+          </tr><tr>
+            <td class="red">61</td>
+            <td>    } else <span class="non">println(&quot;Invalid setup id!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">62</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">63</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">64</td>
+            <td>  def showScores(setupId:String) {
+</td>
+          </tr><tr>
+            <td class="red">65</td>
+            <td>    val setup = <span class="non">controller.setupById(setupId)
+</span></td>
+          </tr><tr>
+            <td class="red">66</td>
+            <td>    if (<span class="non">setup != null) {
+</span></td>
+          </tr><tr>
+            <td class="red">67</td>
+            <td>      val scores = <span class="non">controller.scores.getScores(setup)
+</span></td>
+          </tr><tr>
+            <td class="red">68</td>
+            <td>      var i = <span class="non">1
+</span></td>
+          </tr><tr>
+            <td class="red">69</td>
+            <td>      for (<span class="non">score &lt;- scores) {
+</span></td>
+          </tr><tr>
+            <td class="red">70</td>
+            <td>        val time = (<span class="non">score.ms/1000.0)
+</span></td>
+          </tr><tr>
+            <td class="red">71</td>
+            <td>        <span class="non">println(&quot;Pos: &quot; + i + &quot;, Seconds: &quot; + time + &quot;, Name: &quot; + score.name)
+</span></td>
+          </tr><tr>
+            <td class="red">72</td>
+            <td>        <span class="non">i += 1
+</span></td>
+          </tr><tr>
+            <td class="black">73</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="red">74</td>
+            <td>    } else <span class="non">println(&quot;Invalid setup id!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">75</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">76</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">77</td>
+            <td>  def readCommand : Boolean = {
+</td>
+          </tr><tr>
+            <td class="red">78</td>
+            <td>        val playRegex = <span class="non">new Regex(&quot;^(\\d+) (\\d+)$&quot;, &quot;a&quot;, &quot;b&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">79</td>
+            <td>        val startRegex = <span class="non">new Regex(&quot;^start ([a-z]+?)$&quot;, &quot;setupId&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">80</td>
+            <td>        val scoresRegex = <span class="non">new Regex(&quot;^scores ([a-z]+?)$&quot;, &quot;setupId&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">81</td>
+            <td>        var continue = <span class="non">true
+</span></td>
+          </tr><tr>
+            <td class="red">82</td>
+            <td>        <span class="non">readLine match {
+</span></td>
+          </tr><tr>
+            <td class="red">83</td>
+            <td>         case &quot;help&quot; =&gt; <span class="non">printHelp
+</span></td>
+          </tr><tr>
+            <td class="red">84</td>
+            <td>         case &quot;p&quot; =&gt; <span class="non">printField(false)
+</span></td>
+          </tr><tr>
+            <td class="red">85</td>
+            <td>         case &quot;q&quot; =&gt; <span class="non">close; continue = false
+</span></td>
+          </tr><tr>
+            <td class="red">86</td>
+            <td>         case &quot;h&quot; =&gt; <span class="non">printHint
+</span></td>
+          </tr><tr>
+            <td class="red">87</td>
+            <td>         case &quot;m&quot; =&gt; <span class="non">printMoveables
+</span></td>
+          </tr><tr>
+            <td class="red">88</td>
+            <td>         case &quot;scramble&quot; =&gt; <span class="non">scramble
+</span></td>
+          </tr><tr>
+            <td class="red">89</td>
+            <td>         case &quot;setups&quot; =&gt; <span class="non">printSetups
+</span></td>
+          </tr><tr>
+            <td class="red">90</td>
+            <td>         case playRegex(a, b) =&gt; <span class="non">playTiles(a.toInt, b.toInt)
+</span></td>
+          </tr><tr>
+            <td class="red">91</td>
+            <td>         case startRegex(setupId) =&gt; <span class="non">startGame(setupId)
+</span></td>
+          </tr><tr>
+            <td class="red">92</td>
+            <td>         case scoresRegex(setupId) =&gt; <span class="non">showScores(setupId)
+</span></td>
+          </tr><tr>
+            <td class="red">93</td>
+            <td>         case _ =&gt; <span class="non">println(&quot;Unknown command!&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">94</td>
+            <td>        }
+</td>
+          </tr><tr>
+            <td class="red">95</td>
+            <td>        <span class="non">continue
+</span></td>
+          </tr><tr>
+            <td class="black">96</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">97</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">98</td>
+            <td>  def printHelp {
+</td>
+          </tr><tr>
+            <td class="red">99</td>
+            <td>    <span class="non">println(&quot;help: Show this help&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">100</td>
+            <td>    <span class="non">println(&quot;q: Quit the game&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">101</td>
+            <td>    <span class="non">println(&quot;p: Print game field with tiles&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">102</td>
+            <td>    <span class="non">println(&quot;h: Show hint&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">103</td>
+            <td>    <span class="non">println(&quot;m: Show all moveable tiles&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">104</td>
+            <td>    <span class="non">println(&quot;setups: List all available setups with name and id&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">105</td>
+            <td>    <span class="non">println(&quot;scramble: Scramble tiles and print field&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">106</td>
+            <td>    <span class="non">println(&quot;start &lt;setupid&gt;: Start a new game&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">107</td>
+            <td>    <span class="non">println(&quot;scores &lt;setupid&gt;: Show scoreboard for a setup&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">108</td>
+            <td>    <span class="non">println(&quot;&lt;Tile-Id&gt; &lt;Tile-Id&gt;: Select the two tiles for removing&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">109</td>
+            <td>    <span class="non">println(&quot;|-----| Legend:&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">110</td>
+            <td>    <span class="non">println(&quot;|aa bb| aa = Tile Type&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">111</td>
+            <td>    <span class="non">println(&quot;|ccccc| bb = Height&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">112</td>
+            <td>    <span class="non">println(&quot;|-----| ccccc = Tile Id&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">113</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">114</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">115</td>
+            <td>  def splitTileIdIntoStrings(id:Int) = {
+</td>
+          </tr><tr>
+            <td class="red">116</td>
+            <td>    val ifull = <span class="non">id.toString
+</span></td>
+          </tr><tr>
+            <td class="red">117</td>
+            <td>    var i1:String = <span class="non">&quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="red">118</td>
+            <td>    var i2:String = <span class="non">&quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="red">119</td>
+            <td>    var i3:String = <span class="non">&quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="black">120</td>
+            <td>      
+</td>
+          </tr><tr>
+            <td class="red">121</td>
+            <td>    if (<span class="non">ifull.length == 1)
+</span></td>
+          </tr><tr>
+            <td class="red">122</td>
+            <td>      <span class="non">i1 = ifull + &quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="red">123</td>
+            <td>    else if (<span class="non">ifull.length == 2)
+</span></td>
+          </tr><tr>
+            <td class="red">124</td>
+            <td>      <span class="non">i1 = ifull
+</span></td>
+          </tr><tr>
+            <td class="red">125</td>
+            <td>    else if (<span class="non">ifull.length == 3) {
+</span></td>
+          </tr><tr>
+            <td class="red">126</td>
+            <td>      <span class="non">i1 = ifull.substring(0, 2)
+</span></td>
+          </tr><tr>
+            <td class="red">127</td>
+            <td>      <span class="non">i2 = ifull.substring(2, 3)
+</span></td>
+          </tr><tr>
+            <td class="red">128</td>
+            <td>    } else if (<span class="non">ifull.length == 4) {
+</span></td>
+          </tr><tr>
+            <td class="red">129</td>
+            <td>      <span class="non">i1 = ifull.substring(0, 2)
+</span></td>
+          </tr><tr>
+            <td class="red">130</td>
+            <td>      <span class="non">i2 = ifull.substring(2, 3)
+</span></td>
+          </tr><tr>
+            <td class="red">131</td>
+            <td>      <span class="non">i3 = ifull.substring(3, 4) + &quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="red">132</td>
+            <td>    } else if (<span class="non">ifull.length &gt;= 5) {
+</span></td>
+          </tr><tr>
+            <td class="red">133</td>
+            <td>      <span class="non">i1 = ifull.substring(0, 2)
+</span></td>
+          </tr><tr>
+            <td class="red">134</td>
+            <td>      <span class="non">i2 = ifull.substring(2, 3)
+</span></td>
+          </tr><tr>
+            <td class="red">135</td>
+            <td>      <span class="non">i3 = ifull.substring(3, 5)
+</span></td>
+          </tr><tr>
+            <td class="black">136</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">137</td>
+            <td>    <span class="non">(i1,i2,i3)
+</span></td>
+          </tr><tr>
+            <td class="black">138</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">139</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">140</td>
+            <td>  def close {
+</td>
+          </tr><tr>
+            <td class="red">141</td>
+            <td>    <span class="non">controller.detachView(this)
+</span></td>
+          </tr><tr>
+            <td class="black">142</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">143</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">144</td>
+            <td>  def printHint {
+</td>
+          </tr><tr>
+            <td class="red">145</td>
+            <td>    <span class="non">controller.requestHint
+</span></td>
+          </tr><tr>
+            <td class="black">146</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">147</td>
+            <td>
+</td>
+          </tr><tr>
+            <td class="black">148</td>
+            <td>  def printMoveables {
+</td>
+          </tr><tr>
+            <td class="red">149</td>
+            <td>    <span class="non">controller.requestMoveables
+</span></td>
+          </tr><tr>
+            <td class="black">150</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">151</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">152</td>
+            <td>  def printSetups {
+</td>
+          </tr><tr>
+            <td class="red">153</td>
+            <td>    for (<span class="non">setup &lt;- controller.setups) {
+</span></td>
+          </tr><tr>
+            <td class="red">154</td>
+            <td>      <span class="non">println(&quot;Id: &quot; + setup.id + &quot;, Name: &quot; + setup.name)
+</span></td>
+          </tr><tr>
+            <td class="black">155</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="black">156</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">157</td>
+            <td>  
+</td>
+          </tr><tr>
+            <td class="black">158</td>
+            <td>  def printField(moveablesOnly : Boolean) {
+</td>
+          </tr><tr>
+            <td class="black">159</td>
+            <td>    // TODO: Split into smaller methods
+</td>
+          </tr><tr>
+            <td class="red">160</td>
+            <td>    val line = <span class="non">&quot;-&quot; * (controller.fieldWidth * 3 + 2)
+</span></td>
+          </tr><tr>
+            <td class="red">161</td>
+            <td>    <span class="non">println(line)
+</span></td>
+          </tr><tr>
+            <td class="red">162</td>
+            <td>    var leftTile:Tile = <span class="non">null
+</span></td>
+          </tr><tr>
+            <td class="red">163</td>
+            <td>    for (<span class="non">y &lt;- 0 until controller.fieldHeight; x &lt;- 0 until controller.fieldWidth) {
+</span></td>
+          </tr><tr>
+            <td class="red">164</td>
+            <td>      if (<span class="non">x == 0) print(&quot;|&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">165</td>
+            <td>      
+</td>
+          </tr><tr>
+            <td class="red">166</td>
+            <td>      val tile = <span class="non">controller.topmostTile(x, y)
+</span></td>
+          </tr><tr>
+            <td class="red">167</td>
+            <td>      if (<span class="non">tile == null) {
+</span></td>
+          </tr><tr>
+            <td class="red">168</td>
+            <td>        if (<span class="non">leftTile == null) print(&quot; &quot;) else print(&quot;| &quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">169</td>
+            <td>      } else {
+</td>
+          </tr><tr>
+            <td class="red">170</td>
+            <td>        val moveable = <span class="non">controller.canMove(tile)
+</span></td>
+          </tr><tr>
+            <td class="red">171</td>
+            <td>        val id = <span class="non">controller.calcTileIndex(tile)
+</span></td>
+          </tr><tr>
+            <td class="red">172</td>
+            <td>        val (<span class="non">i1, i2, i3) = splitTileIdIntoStrings(id)
+</span></td>
+          </tr><tr>
+            <td class="black">173</td>
+            <td>        
+</td>
+          </tr><tr>
+            <td class="red">174</td>
+            <td>        var center = <span class="non">&quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="red">175</td>
+            <td>        if (<span class="non">y == tile.y || y == tile.y + Tile.Height-1)
+</span></td>
+          </tr><tr>
+            <td class="red">176</td>
+            <td>          <span class="non">center = &quot;-&quot;
+</span></td>
+          </tr><tr>
+            <td class="red">177</td>
+            <td>        else if (<span class="non">moveablesOnly &amp;&amp; !moveable)
+</span></td>
+          </tr><tr>
+            <td class="red">178</td>
+            <td>          <span class="non">center = &quot; &quot;
+</span></td>
+          </tr><tr>
+            <td class="red">179</td>
+            <td>        else if (<span class="non">tile != null &amp;&amp; tile.y == y-2)
+</span></td>
+          </tr><tr>
+            <td class="red">180</td>
+            <td>          <span class="non">center = i2
+</span></td>
+          </tr><tr>
+            <td class="black">181</td>
+            <td>        
+</td>
+          </tr><tr>
+            <td class="red">182</td>
+            <td>        if (<span class="non">leftTile == tile)
+</span></td>
+          </tr><tr>
+            <td class="red">183</td>
+            <td>          <span class="non">print(center)
+</span></td>
+          </tr><tr>
+            <td class="black">184</td>
+            <td>        else
+</td>
+          </tr><tr>
+            <td class="red">185</td>
+            <td>          <span class="non">print(&quot;|&quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">186</td>
+            <td>        
+</td>
+          </tr><tr>
+            <td class="red">187</td>
+            <td>        if ((<span class="non">tile.x == x || tile.x + Tile.Width-1 == x) &amp;&amp; (tile.y == y || tile.y + Tile.Height - 1 == y))
+</span></td>
+          </tr><tr>
+            <td class="red">188</td>
+            <td>          <span class="non">print(&quot;--&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">189</td>
+            <td>        else if (<span class="non">moveablesOnly &amp;&amp; !moveable)
+</span></td>
+          </tr><tr>
+            <td class="red">190</td>
+            <td>          <span class="non">print(&quot; &quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">191</td>
+            <td>        else if (<span class="non">tile.y == y-1 &amp;&amp; tile.x == x-1)
+</span></td>
+          </tr><tr>
+            <td class="red">192</td>
+            <td>          <span class="non">print(&quot;%2d&quot;.format(tile.z))
+</span></td>
+          </tr><tr>
+            <td class="red">193</td>
+            <td>        else if (<span class="non">tile.y == y-1 &amp;&amp; tile.x == x)
+</span></td>
+          </tr><tr>
+            <td class="red">194</td>
+            <td>          <span class="non">print(&quot;%2d&quot;.format(tile.tileType.id))
+</span></td>
+          </tr><tr>
+            <td class="red">195</td>
+            <td>        else if (<span class="non">tile.y == y-2 &amp;&amp; tile.x == x)
+</span></td>
+          </tr><tr>
+            <td class="red">196</td>
+            <td>          <span class="non">print(i1)
+</span></td>
+          </tr><tr>
+            <td class="red">197</td>
+            <td>        else if (<span class="non">tile.y == y-2 &amp;&amp; tile.x == x-1)
+</span></td>
+          </tr><tr>
+            <td class="red">198</td>
+            <td>          <span class="non">print(i3)
+</span></td>
+          </tr><tr>
+            <td class="black">199</td>
+            <td>        else
+</td>
+          </tr><tr>
+            <td class="red">200</td>
+            <td>          <span class="non">print(&quot; &quot;)
+</span></td>
+          </tr><tr>
+            <td class="black">201</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">202</td>
+            <td>      
+</td>
+          </tr><tr>
+            <td class="red">203</td>
+            <td>      if (<span class="non">x == controller.fieldWidth - 1) {
+</span></td>
+          </tr><tr>
+            <td class="red">204</td>
+            <td>        <span class="non">print(&quot;|\n&quot;)
+</span></td>
+          </tr><tr>
+            <td class="red">205</td>
+            <td>        <span class="non">leftTile = null
+</span></td>
+          </tr><tr>
+            <td class="black">206</td>
+            <td>      } else {
+</td>
+          </tr><tr>
+            <td class="red">207</td>
+            <td>        <span class="non">leftTile = tile
+</span></td>
+          </tr><tr>
+            <td class="black">208</td>
+            <td>      }
+</td>
+          </tr><tr>
+            <td class="black">209</td>
+            <td>    }
+</td>
+          </tr><tr>
+            <td class="red">210</td>
+            <td>    <span class="non">println(line)
+</span></td>
+          </tr><tr>
+            <td class="black">211</td>
+            <td>  }
+</td>
+          </tr><tr>
+            <td class="black">212</td>
+            <td>}
+</td>
+          </tr></tbody></table>

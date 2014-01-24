@@ -1,0 +1,10 @@
+#Successful Tests
+#Fri Jan 24 10:41:44 CET 2014
+test.scala.mahjonggamemodel.ScoreTest=1390556498230
+test.scala.mahjonggamemodel.SetupTest=1390556497402
+test.scala.mahjonggamemodel.ImplementationTest=1390556498230
+test.scala.mahjonggamecontroller.ControllerSpec=1390556504355
+test.scala.mahjonggameutil.FileUtilTest=1390556497714
+test.scala.mahjonggamemodel.TileTest=1390556497371
+test.scala.mahjonggameutil.PublischerTest=1390556497324
+test.scala.mahjonggamemodel.TileTypeTest=1390556497433
